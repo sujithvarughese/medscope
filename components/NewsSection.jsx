@@ -34,7 +34,7 @@ const NewsSection = () => {
 
 const styles = StyleSheet.create({
   container: {
-
+    flex: 1
   },
   text: {
     fontWeight: "700"

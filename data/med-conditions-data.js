@@ -1,4 +1,4 @@
-[
+export const medicalConditionsData = [
     {
         "key_id": "8815",
         "primary_name": "Meningitis - fungal",
@@ -64329,3 +64329,5 @@
         ]
     }
 ]
+
+export const medicalConditions = medicalConditionsData.map(condition=> condition.primary_name)
