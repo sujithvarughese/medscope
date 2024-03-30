@@ -22,11 +22,23 @@ const NewsSection = () => {
 
 
   return (
-    <ScrollView>
-      <Text>New Articles</Text>
-      {newsArticles?.map((article, index) => <NewsTile key={index} author={article.author} title={article.title} urlToImage={article.urlToImage}/>)}
-    </ScrollView>
+    <View style={styles.container}>
+      <Text style={styles.text}>Latest Health News</Text>
+      <ScrollView style={styles.container} horizontal={true}>
+        {newsArticles?.map((article, index) => <NewsTile key={index} author={article.author} title={article.title} url={article.url} urlToImage={article.urlToImage}/>)}
+      </ScrollView>
+    </View>
+
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+
+  },
+  text: {
+    fontWeight: "700"
+  }
+})
 
 export default NewsSection

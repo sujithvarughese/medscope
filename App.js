@@ -1,3 +1,4 @@
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context"
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import NewsSection from './components/NewsSection'
@@ -7,11 +8,13 @@ export default function App() {
 
 
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <NewsSection />
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaProvider>
+      <SafeAreaView style={styles.container}>
+        <NewsSection />
+        <StatusBar style="auto" />
+      </SafeAreaView>
+    </SafeAreaProvider>
+   
   );
 }
 
