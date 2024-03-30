@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Button, FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { useEffect, useState } from 'react'
 import { medicalConditionsData } from '../data/med-conditions-data'
 
@@ -7,6 +7,21 @@ const SearchBar = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
   const [queryMatches, setQueryMatches] = useState(null)
+  const [selectedConditions, setSelectedConditions] = useState([])
+
+  const submitCondition = (condition) => {
+    setSelectedConditions(prev => [...prev, condition])
+    setSearchQuery(prev => "")
+  }
+
+  const resetConditions = () => {
+    setSelectedConditions([])
+    setSearchQuery("")
+  }
+
+  const handleSubmit = () => {
+    console.log(selectedConditions)
+  }
 
   useEffect(() => {
     if (searchQuery.length <= 0) {
@@ -27,10 +42,20 @@ const SearchBar = () => {
 
   return (
     <View style={styles.container}>
+      <FlatList
+        data={selectedConditions}
+        keyExtractor={({item}) => item}
+        renderItem={({item}) =>
+        <View>
+          <Text>{item}</Text>
+        </View>}
+      />
+
       <TextInput
         style={styles.searchBox}
         value={searchQuery}
         onChangeText={(query) => setSearchQuery(query)}
+        onSubmitEditing={submitCondition}
         returnKeyType="search"
         placeholder="search symptoms..."
         autoFocus={true}
@@ -42,8 +67,11 @@ const SearchBar = () => {
       <FlatList
         data={queryMatches}
         keyExtractor={({item}) => item?.key_id}
-        renderItem={({item}) => <Text>{item?.primary_name}</Text>}
+        renderItem={({item}) =>
+          <TouchableOpacity onPress={()=>submitCondition(item.primary_name)}><Text>{item?.primary_name}</Text></TouchableOpacity>}
         />
+      <Button title="Search" onPress={handleSubmit}/>
+      <Button title="Reset" onPress={resetConditions}/>
     </View>
   )
 }
