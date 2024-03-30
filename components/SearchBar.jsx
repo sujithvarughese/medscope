@@ -1,11 +1,13 @@
 import { Button, FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { useEffect, useState } from 'react'
 import { medicalConditionsData } from '../data/med-conditions-data'
+import Slider from '@react-native-community/slider'
 
 const SearchBar = () => {
 
   const [isLoading, setIsLoading] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
+  const [age, setAge] = useState(18)
   const [queryMatches, setQueryMatches] = useState(null)
   const [selectedConditions, setSelectedConditions] = useState([])
 
@@ -17,6 +19,10 @@ const SearchBar = () => {
   const resetConditions = () => {
     setSelectedConditions([])
     setSearchQuery("")
+  }
+
+  const handleAgeSlider = () => {
+
   }
 
   const handleSubmit = () => {
@@ -50,7 +56,13 @@ const SearchBar = () => {
           <Text>{item}</Text>
         </View>}
       />
-
+      <Text>Age: {age}</Text>
+      <Slider
+        onValueChange={(val)=>setAge(val)}
+        minimumValue={1}
+        maximumValue={120}
+        step={1}
+      />
       <TextInput
         style={styles.searchBox}
         value={searchQuery}
@@ -79,6 +91,10 @@ const SearchBar = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  slider: {
+    width: 200,
+    height: 40
   },
   searchBox: {
     paddingHorizontal: 20,
