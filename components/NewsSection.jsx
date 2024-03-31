@@ -16,6 +16,7 @@ const NewsSection = () => {
       throw new Error(error)
     }
   }
+
   useEffect(() => {
     fetchArticles()
   }, [])

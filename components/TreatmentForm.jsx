@@ -4,10 +4,10 @@ import { medicalConditionsList } from '../data/medicalConditions.js'
 import Slider from '@react-native-community/slider'
 import SearchBar from './SearchBar'
 
-const TreatmentForm = () => {
+const TreatmentForm = ({ fetchTreatmentPlan }) => {
 
   const [isLoading, setIsLoading] = useState(false)
-  const [age, setAge] = useState(18)
+  const [age, setAge] = useState("18")
   const [sex, setSex] = useState(false)
   const [selectedConditions, setSelectedConditions] = useState([])
 
@@ -21,20 +21,28 @@ const TreatmentForm = () => {
   }
 
   const handleSubmit = () => {
-    console.log(selectedConditions)
+    const selectedSex = sex === true ? "female" : "male"
+    fetchTreatmentPlan({ age, sex: selectedSex, medicalConditions: selectedConditions })
   }
 
 
   return (
     <View style={styles.container}>
 
-
+      <View style={styles.ageToggle}>
+        <Text>Age: </Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={(val)=>setAge(val)}
+          keyboardType="numeric"
+          maxLength={2}
+        />
+      </View>
 
       <View style={styles.sexToggle}>
         <View>
           <Text>Sex: </Text>
         </View>
-
         <View style={styles.switch}>
           <Text>{sex ? "Female" : "Male"}</Text>
           <Switch
@@ -46,18 +54,8 @@ const TreatmentForm = () => {
         </View>
       </View>
 
-      <View style={styles.ageToggle}>
-        <Text>Age: </Text>
-        <TextInput
-          style={styles.input}
-          onChange={(val)=>setAge(Number(val))}
-          placeholder={"18"}
-          keyboardType="numeric"
-          maxLength={2}
-        />
-      </View>
-
       <SearchBar selectedConditions={selectedConditions} setSelectedConditions={setSelectedConditions}/>
+
       <View style={styles.buttonGroup}>
         <TouchableOpacity style={styles.button} onPress={handleSubmit}><Text>Search</Text></TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={resetConditions}><Text>Reset</Text></TouchableOpacity>
