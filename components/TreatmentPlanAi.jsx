@@ -2,9 +2,9 @@ import { View } from 'react-native'
 
 const TreatmentPlanAi = () => {
   return (
-    <View>
+    <Viheadew>
 
-    </View>
+    </Viheadew>
   )
 }
 

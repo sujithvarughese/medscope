@@ -2,7 +2,7 @@ import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'r
 import { useEffect, useState } from 'react'
 import { medicalConditionsList } from '../data/medicalConditions.js'
 
-const SearchBar = ({ setSelectedConditions }) => {
+const SearchBar = ({ selectedConditions, setSelectedConditions }) => {
 
   const [isLoading, setIsLoading] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
@@ -22,7 +22,7 @@ const SearchBar = ({ setSelectedConditions }) => {
       // filter workouts based on user-entered query once user has entered 3 letters
       if (searchQuery.length > 2) {
         const filteredConditions = medicalConditionsList.filter(condition => {
-          return condition.toLowerCase().includes(searchQuery.toLowerCase())
+          return (condition.toLowerCase().includes(searchQuery.toLowerCase()) && !selectedConditions.includes(condition))
         })
         // loadOptions enables immediate filtering on input change with callback function passing in filtered results
         setQueryMatches(filteredConditions)
@@ -46,6 +46,7 @@ const SearchBar = ({ setSelectedConditions }) => {
         autoCapitalize="none"
       >
       </TextInput>
+
       {
         (searchQuery.length > 2 && queryMatches.length) === 0
           ?
@@ -58,11 +59,9 @@ const SearchBar = ({ setSelectedConditions }) => {
             renderItem={({item}) =>
               <TouchableOpacity style={styles.listItemCondition} onPress={()=>submitCondition(item)}>
                 <Text>{item}</Text>
-                <Text>x</Text>
               </TouchableOpacity>}
           />
       }
-
 
     </View>
   )
@@ -70,16 +69,20 @@ const SearchBar = ({ setSelectedConditions }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+
   },
   searchBox: {
-    flex: 1,
-    paddingHorizontal: 20,
-    paddingVertical: 10,
     borderColor: "#ccc",
     borderWidth: 1,
+    borderRadius: 6,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+
   },
   list: {
+
+  },
+  listItemCondition: {
 
   }
 })

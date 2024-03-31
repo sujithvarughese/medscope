@@ -4,7 +4,7 @@ import { medicalConditionsList } from '../data/medicalConditions.js'
 import Slider from '@react-native-community/slider'
 import SearchBar from './SearchBar'
 
-const TreatmentPlanForm = () => {
+const TreatmentForm = () => {
 
   const [isLoading, setIsLoading] = useState(false)
   const [age, setAge] = useState(18)
@@ -36,31 +36,33 @@ const TreatmentPlanForm = () => {
         </View>
 
         <View style={styles.switch}>
-          <Text>Male</Text>
+          <Text>{sex ? "Female" : "Male"}</Text>
           <Switch
             value={sex}
             onValueChange={()=>setSex(!sex)}
             ios_backgroundColor="#81b0ff"
             trackColor={{true: '#FFC0CB'}}
           />
-          <Text>Female</Text>
         </View>
       </View>
 
       <View style={styles.ageToggle}>
-        <Text>Age: {age}</Text>
-        <Slider
-          style={styles.slider}
-          onValueChange={(val)=>setAge(val)}
-          minimumValue={1}
-          maximumValue={120}
-          step={1}
+        <Text>Age: </Text>
+        <TextInput
+          style={styles.input}
+          onChange={(val)=>setAge(Number(val))}
+          placeholder={"18"}
+          keyboardType="numeric"
+          maxLength={2}
         />
       </View>
 
-      <SearchBar setSelectedConditions={setSelectedConditions}/>
-      <Button title="Search" onPress={handleSubmit}/>
-      <Button title="Reset" onPress={resetConditions}/>
+      <SearchBar selectedConditions={selectedConditions} setSelectedConditions={setSelectedConditions}/>
+      <View style={styles.buttonGroup}>
+        <TouchableOpacity style={styles.button} onPress={handleSubmit}><Text>Search</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={resetConditions}><Text>Reset</Text></TouchableOpacity>
+      </View>
+
       <FlatList
         data={selectedConditions}
         keyExtractor={({item}) => item}
@@ -85,33 +87,41 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   sexToggle: {
-    flex: 1,
+
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between"
   },
   switch: {
-    flex: 1,
+
     flexDirection: "row",
     alignItems: "center",
     gap: 4
   },
   ageToggle: {
-    flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center"
   },
-  slider: {
-    flex: 1,
+  input: {
+    borderColor: "#ccc",
+    borderWidth: 1,
+    borderRadius: 6,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
   },
   searchBox: {
     flex: 1,
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    borderColor: "#ccc",
-    borderWidth: 1,
+  },
+  buttonGroup: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+  },
+  button: {
+    backgroundColor: "lightblue",
+    padding: 10,
+    borderRadius: 6,
   },
 })
 
-export default TreatmentPlanForm
+export default TreatmentForm

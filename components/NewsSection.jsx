@@ -24,8 +24,8 @@ const NewsSection = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Latest Health News</Text>
-      <ScrollView style={styles.container} horizontal={true}>
-        {newsArticles?.map((article, index) => <NewsTile key={index} author={article.author} title={article.title} url={article.url} urlToImage={article.urlToImage}/>)}
+      <ScrollView style={styles.list} horizontal={true}>
+        {newsArticles?.map((article, index) => <NewsTile key={index} source={article.source.name} title={article.title} url={article.url} urlToImage={article.urlToImage}/>)}
       </ScrollView>
     </View>
 
@@ -34,7 +34,7 @@ const NewsSection = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 2
+    flex: 1
   },
   text: {
     fontWeight: "700"
