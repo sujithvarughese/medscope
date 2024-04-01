@@ -1,6 +1,6 @@
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context"
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView, SectionList, StyleSheet, Text, View } from 'react-native'
 import NewsSection from './components/NewsSection'
 import TreatmentForm from './components/TreatmentForm'
 import Header from './components/Header'
@@ -19,22 +19,22 @@ export default function App() {
       const response = await axios.post("http://localhost:8800/api/v1/conditions", { age, sex, medicalConditions })
       const { treatmentPlan } = response.data
       setTreatment(treatmentPlan)
-      console.log(treatmentPlan)
     } catch (error) {
       throw new Error(error)
     }
-
   }
 
   return (
     <SafeAreaProvider>
-      <SafeAreaView style={styles.container}>
-        <Header style={styles.header}/>
-        <NewsSection style={styles.news} />
-        <TreatmentForm style={styles.treatmentForm} fetchTreatmentPlan={fetchTreatmentPlan}/>
-        <TreatmentPlan style={styles.treatmentPlan}/>
-        <Footer style={styles.footer}/>
-      </SafeAreaView>
+
+        <SafeAreaView style={styles.container}>
+          <Header style={styles.header}/>
+          <NewsSection style={styles.news} />
+          <TreatmentForm style={styles.treatmentForm} fetchTreatmentPlan={fetchTreatmentPlan}/>
+          <TreatmentPlan style={styles.treatmentPlan} treatment={treatment}/>
+          <Footer style={styles.footer}/>
+        </SafeAreaView>
+
     </SafeAreaProvider>
    
   );

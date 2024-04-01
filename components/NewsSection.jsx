@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import { FlatList, ScrollView, StyleSheet, Text, View } from 'react-native'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import NewsTile from './NewsTile'
@@ -25,9 +25,15 @@ const NewsSection = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Latest Health News</Text>
-      <ScrollView style={styles.list} horizontal={true}>
-        {newsArticles?.map((article, index) => <NewsTile key={index} source={article.source.name} title={article.title} url={article.url} urlToImage={article.urlToImage}/>)}
-      </ScrollView>
+      <FlatList
+        style={styles.list}
+        horizontal={true}
+        initialNumToRender={4}
+        keyExtractor={item => item.title}
+        data={newsArticles}
+        renderItem={({item}) => <NewsTile source={item.source.name} title={item.title} url={item.url} urlToImage={item.urlToImage}/>}
+      />
+
     </View>
 
   )
@@ -39,6 +45,9 @@ const styles = StyleSheet.create({
   },
   text: {
     fontWeight: "700"
+  },
+  list: {
+
   }
 })
 

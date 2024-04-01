@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "medscope-client",
-    "slug": "medscope-client",
+    "slug": "medscope",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -25,6 +25,18 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c99bd0c6-f7fb-47a2-b2b7-d634f0e9ebb5"
+      }
+    },
+    "owner": "sujithv",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/c99bd0c6-f7fb-47a2-b2b7-d634f0e9ebb5"
     }
   }
 }
