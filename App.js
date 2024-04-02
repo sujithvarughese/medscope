@@ -11,11 +11,11 @@ export default function App() {
   return (
       <SafeAreaProvider>
 
-        <SafeAreaView>
-          <Header style={styles.header}/>
+        <SafeAreaView style={styles.header}>
+          <Header/>
         </SafeAreaView>
 
-        <NavigationContainer style={styles.container}>
+        <NavigationContainer>
           <TabNavigation />
         </NavigationContainer>
 
@@ -32,9 +32,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+
   },
   header: {
-    height: 100,
+    height: 130
   },
   news: {
 

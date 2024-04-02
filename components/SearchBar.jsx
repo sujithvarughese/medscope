@@ -2,6 +2,7 @@ import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'r
 import { useEffect, useState } from 'react'
 import { medicalConditionsList } from '../data/medicalConditions.js'
 import DropDownPicker from "react-native-dropdown-picker"
+import RNPickerSelect from 'react-native-picker-select';
 import { Picker } from "@react-native-picker/picker"
 const SearchBar = ({ selectedConditions, setSelectedConditions }) => {
 
@@ -49,17 +50,16 @@ const SearchBar = ({ selectedConditions, setSelectedConditions }) => {
       >
       </TextInput>
 
-      {
-      (searchQuery.length > 2 && queryMatches.length) === 0
-      ?
-      <Text>No results found</Text>
-      :
-      <Picker
-        style={styles.list}
-        onValueChange={(value) => submitCondition(value)}
-      >
-        {queryMatches.map(queryMatch =>  <Picker.Item label={queryMatch} value={queryMatch} />)}
-      </Picker>
+      {searchQuery.length > 0 &&
+      <View style={styles.listContainer}>
+        <Picker
+          style={styles.list}
+          onValueChange={(value) => submitCondition(value)}
+        >
+          {queryMatches.map((queryMatch, index) =>  <Picker.Item key={index} label={queryMatch} value={queryMatch} />)}
+        </Picker>
+      </View>
+
       }
 
     </View>
@@ -78,9 +78,12 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
 
   },
+  listContainer: {
+
+  },
   list: {
-    flex: 1,
-    zIndex: 100,
+
+
   },
   listItemCondition: {
 
