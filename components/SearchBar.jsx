@@ -1,7 +1,8 @@
 import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { useEffect, useState } from 'react'
 import { medicalConditionsList } from '../data/medicalConditions.js'
-
+import DropDownPicker from "react-native-dropdown-picker"
+import { Picker } from "@react-native-picker/picker"
 const SearchBar = ({ selectedConditions, setSelectedConditions }) => {
 
   const [isLoading, setIsLoading] = useState(false)
@@ -9,6 +10,7 @@ const SearchBar = ({ selectedConditions, setSelectedConditions }) => {
   const [queryMatches, setQueryMatches] = useState([])
 
   const submitCondition = (condition) => {
+    console.log(condition)
     setSelectedConditions(prev => [...prev, condition])
     setSearchQuery(prev => "")
   }
@@ -48,19 +50,16 @@ const SearchBar = ({ selectedConditions, setSelectedConditions }) => {
       </TextInput>
 
       {
-        (searchQuery.length > 2 && queryMatches.length) === 0
-          ?
-          <Text>No results found</Text>
-          :
-          <FlatList
-            style={styles.list}
-            data={queryMatches}
-            keyExtractor={({item}) => item}
-            renderItem={({item}) =>
-              <TouchableOpacity style={styles.listItemCondition} onPress={()=>submitCondition(item)}>
-                <Text>{item}</Text>
-              </TouchableOpacity>}
-          />
+      (searchQuery.length > 2 && queryMatches.length) === 0
+      ?
+      <Text>No results found</Text>
+      :
+      <Picker
+        style={styles.list}
+        onValueChange={(value) => submitCondition(value)}
+      >
+        {queryMatches.map(queryMatch =>  <Picker.Item label={queryMatch} value={queryMatch} />)}
+      </Picker>
       }
 
     </View>
@@ -80,7 +79,8 @@ const styles = StyleSheet.create({
 
   },
   list: {
-
+    flex: 1,
+    zIndex: 100,
   },
   listItemCondition: {
 

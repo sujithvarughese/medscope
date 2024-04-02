@@ -11,11 +11,11 @@ export default function App() {
   return (
       <SafeAreaProvider>
 
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView>
           <Header style={styles.header}/>
         </SafeAreaView>
 
-        <NavigationContainer>
+        <NavigationContainer style={styles.container}>
           <TabNavigation />
         </NavigationContainer>
 

@@ -29,21 +29,18 @@ const TreatmentForm = ({ fetchTreatmentPlan }) => {
   return (
     <View style={styles.container}>
 
-      <View style={styles.ageToggle}>
-        <Text>Age: </Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={(val)=>setAge(val)}
-          keyboardType="numeric"
-          maxLength={2}
-        />
-      </View>
-
-      <View style={styles.sexToggle}>
-        <View>
-          <Text>Sex: </Text>
+      <View style={styles.ageSexGroup}>
+        <View style={styles.ageGroup}>
+          <Text>Age: </Text>
+          <TextInput
+            style={styles.ageInput}
+            onChangeText={(val)=>setAge(val)}
+            keyboardType="numeric"
+            maxLength={2}
+          />
         </View>
-        <View style={styles.switch}>
+
+        <View style={styles.sexToggle}>
           <Text>{sex ? "Female" : "Male"}</Text>
           <Switch
             value={sex}
@@ -76,30 +73,44 @@ const TreatmentForm = ({ fetchTreatmentPlan }) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: 200,
+    alignSelf: "center",
+    width: 300,
+    gap: 10,
+    borderColor: "#ccc",
+    borderWidth: 1,
+    borderRadius: 6,
+    padding: 6,
   },
-  listItemCondition: {
-
+  ageSexGroup: {
     flexDirection: "row",
     justifyContent: "space-between",
+    paddingHorizontal: 32,
   },
-  sexToggle: {
-
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between"
-  },
-  switch: {
-
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 4
-  },
-  ageToggle: {
+  ageGroup: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center"
   },
+  ageInput: {
+    borderColor: "#ccc",
+    borderWidth: 1,
+    borderRadius: 6,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    width: 50,
+  },
+  sexToggle: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 4
+
+  },
+
+  listItemCondition: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+
   input: {
     borderColor: "#ccc",
     borderWidth: 1,
@@ -113,11 +124,13 @@ const styles = StyleSheet.create({
   buttonGroup: {
     flexDirection: "row",
     justifyContent: "space-around",
+
   },
   button: {
     backgroundColor: "lightblue",
     padding: 10,
     borderRadius: 6,
+
   },
 })
 

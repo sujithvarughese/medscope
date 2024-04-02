@@ -31,7 +31,7 @@ const NewsSection = () => {
         initialNumToRender={4}
         keyExtractor={item => item.title}
         data={newsArticles}
-        renderItem={({item}) => <NewsTile source={item.source.name} title={item.title} url={item.url} urlToImage={item.urlToImage}/>}
+        renderItem={({item}) => <NewsTile source={item.source.name} title={item.title} url={item.url} urlToImage={item.urlToImage} date={item.publishedAt}/>}
       />
     </View>
 
@@ -40,7 +40,7 @@ const NewsSection = () => {
 
 const styles = StyleSheet.create({
   container: {
-    height: 260
+    height: 280
   },
   text: {
     fontWeight: "700"

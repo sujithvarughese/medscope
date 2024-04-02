@@ -31,7 +31,8 @@ const TreatmentItem = ({ name, dose, description, precautions, risks }) => {
 
 const styles = StyleSheet.create({
   container: {
-    gap: 8,
+    gap: 4,
+    marginBottom: 14,
 
   },
   name: {

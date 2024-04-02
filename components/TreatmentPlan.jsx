@@ -4,7 +4,7 @@ import TreatmentItem from './TreatmentItem'
 const TreatmentPlan = ({ treatment }) => {
   return (
     <View style={styles.container}>
-
+      <Text style={styles.title}>Treatment Options</Text>
       <FlatList
         style={styles.list}
         data={treatment}
@@ -17,7 +17,11 @@ const TreatmentPlan = ({ treatment }) => {
 
 const styles = StyleSheet.create({
   container: {
-
+    padding: 8,
+  },
+  title: {
+    fontSize: 20,
+    textAlign: "center"
   },
   list: {
 
