@@ -1,6 +1,6 @@
 import { Button, FlatList, StyleSheet, Switch, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { useEffect, useState } from 'react'
-import { medicalConditionsList } from '../data/medicalConditions.js'
+import { medicalConditionsList } from '../../data/medicalConditions.js'
 import Slider from '@react-native-community/slider'
 import SearchBar from './SearchBar'
 

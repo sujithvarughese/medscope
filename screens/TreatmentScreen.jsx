@@ -1,6 +1,6 @@
 import { View, StyleSheet, Text } from 'react-native'
-import TreatmentForm from './TreatmentForm'
-import TreatmentPlan from './TreatmentPlan'
+import TreatmentForm from './treatment/TreatmentForm'
+import TreatmentPlan from './treatment/TreatmentPlan'
 import { useState } from 'react'
 import axios from 'axios'
 

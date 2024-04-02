@@ -1,10 +1,14 @@
 import { View, Text, StyleSheet } from 'react-native'
-import NewsSection from './NewsSection'
+import NewsSection from './home/news/NewsSection'
+import SearchDrugs from './home/drugLookup/SearchDrugs'
+import DrugInformation from './home/drugLookup/DrugInformation'
 
 const HomeScreen = () => {
   return (
     <View>
       <NewsSection style={styles.news} />
+      <SearchDrugs style={styles.search}/>
+      <DrugInformation />
     </View>
   )
 }
@@ -19,6 +23,9 @@ const styles = StyleSheet.create({
   news: {
 
   },
+  search: {
+
+  }
 
 })
 export default HomeScreen

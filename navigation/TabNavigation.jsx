@@ -1,7 +1,7 @@
 import {View, Text } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import HomeScreen from '../components/HomeScreen'
-import TreatmentScreen from '../components/TreatmentScreen'
+import HomeScreen from '../screens/HomeScreen'
+import TreatmentScreen from '../screens/TreatmentScreen'
 
 const Tab = createBottomTabNavigator()
 const TabNavigation = () => {

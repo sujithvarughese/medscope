@@ -1,19 +1,16 @@
-import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, TextInput, View } from 'react-native'
 import { useEffect, useState } from 'react'
-import { medicalConditionsList } from '../data/medicalConditions.js'
-import DropDownPicker from "react-native-dropdown-picker"
-import RNPickerSelect from 'react-native-picker-select';
+import { drugListData } from '../../../data/drugList.js'
 import { Picker } from "@react-native-picker/picker"
-const SearchBar = ({ selectedConditions, setSelectedConditions }) => {
+const SearchDrugs = () => {
 
   const [isLoading, setIsLoading] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
   const [queryMatches, setQueryMatches] = useState([])
 
-  const submitCondition = (condition) => {
-    console.log(condition)
-    setSelectedConditions(prev => [...prev, condition])
-    setSearchQuery(prev => "")
+  const handleSubmit = (drug) => {
+    console.log(drug)
+    setSearchQuery("")
   }
 
   useEffect(() => {
@@ -24,11 +21,9 @@ const SearchBar = ({ selectedConditions, setSelectedConditions }) => {
     setTimeout(() => {
       // filter workouts based on user-entered query once user has entered 3 letters
       if (searchQuery.length > 2) {
-        const filteredConditions = medicalConditionsList.filter(condition => {
-          return (condition.toLowerCase().includes(searchQuery.toLowerCase()) && !selectedConditions.includes(condition))
-        })
+        const filteredDrugs = drugListData.filter(drug => drug.toLowerCase().includes(searchQuery.toLowerCase()))
         // loadOptions enables immediate filtering on input change with callback function passing in filtered results
-        setQueryMatches(filteredConditions)
+        setQueryMatches(filteredDrugs)
       }
     }, 100)
   }, [searchQuery])
@@ -40,7 +35,7 @@ const SearchBar = ({ selectedConditions, setSelectedConditions }) => {
         style={styles.searchBox}
         value={searchQuery}
         onChangeText={(query) => setSearchQuery(query)}
-        onSubmitEditing={submitCondition}
+        onSubmitEditing={handleSubmit}
         returnKeyType="search"
         placeholder="search symptoms..."
         autoFocus={true}
@@ -51,14 +46,14 @@ const SearchBar = ({ selectedConditions, setSelectedConditions }) => {
       </TextInput>
 
       {searchQuery.length > 0 &&
-      <View style={styles.listContainer}>
-        <Picker
-          style={styles.list}
-          onValueChange={(value) => submitCondition(value)}
-        >
-          {queryMatches.map((queryMatch, index) =>  <Picker.Item key={index} label={queryMatch} value={queryMatch} />)}
-        </Picker>
-      </View>
+        <View style={styles.listContainer}>
+          <Picker
+            style={styles.list}
+            onValueChange={(value) => handleSubmit(value)}
+          >
+            {queryMatches.map((queryMatch, index) =>  <Picker.Item key={index} label={queryMatch} value={queryMatch} />)}
+          </Picker>
+        </View>
 
       }
 
@@ -90,4 +85,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default SearchBar
+export default SearchDrugs
