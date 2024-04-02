@@ -77,10 +77,9 @@ const TreatmentForm = ({ fetchTreatmentPlan }) => {
 const styles = StyleSheet.create({
   container: {
     width: 200,
-    flex: 1,
   },
   listItemCondition: {
-    flex: 1,
+
     flexDirection: "row",
     justifyContent: "space-between",
   },

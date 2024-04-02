@@ -33,7 +33,6 @@ const NewsSection = () => {
         data={newsArticles}
         renderItem={({item}) => <NewsTile source={item.source.name} title={item.title} url={item.url} urlToImage={item.urlToImage}/>}
       />
-
     </View>
 
   )
@@ -41,7 +40,7 @@ const NewsSection = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    height: 260
   },
   text: {
     fontWeight: "700"
