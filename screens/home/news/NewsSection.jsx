@@ -3,16 +3,19 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import NewsTile from './NewsTile'
 import connect from '../../../utils/connect'
+import NewsPerCategory from './NewsPerCategory'
 
 const NewsSection = () => {
 
-  const [newsArticles, setNewsArticles] = useState([])
+  const [healthArticles, setHealthArticles] = useState([])
+  const [scienceArticles, setScienceArticles] = useState([])
 
   const fetchArticles = async () => {
     try {
       const response = await connect("news")
-      const { articles } = response.data
-      setNewsArticles(articles)
+      const { filteredHealthArticles, filteredScienceArticles } = response.data
+      setHealthArticles(filteredHealthArticles)
+      setScienceArticles(filteredScienceArticles)
     } catch (error) {
       throw new Error(error)
     }
@@ -22,18 +25,10 @@ const NewsSection = () => {
     fetchArticles()
   }, [])
 
-
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Latest Health News</Text>
-      <FlatList
-        style={styles.list}
-        horizontal={true}
-        initialNumToRender={4}
-        keyExtractor={item => item.title}
-        data={newsArticles}
-        renderItem={({item}) => <NewsTile source={item.source.name} title={item.title} url={item.url} urlToImage={item.urlToImage} date={item.publishedAt}/>}
-      />
+      <NewsPerCategory category="health" articles={healthArticles} />
+      <NewsPerCategory category="science" articles={scienceArticles} />
     </View>
 
   )
@@ -41,13 +36,7 @@ const NewsSection = () => {
 
 const styles = StyleSheet.create({
   container: {
-    height: 280
-  },
-  text: {
-    fontWeight: "700"
-  },
-  list: {
-
+    gap: 12
   }
 })
 

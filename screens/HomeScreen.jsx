@@ -5,7 +5,6 @@ import DrugLookup from './home/drugLookup/DrugLookup'
 const HomeScreen = () => {
   return (
     <View>
-      <Text>{process?.env.NODE_ENV}</Text>
       <NewsSection style={styles.news} />
       <DrugLookup />
     </View>

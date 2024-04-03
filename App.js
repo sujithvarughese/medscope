@@ -4,9 +4,7 @@ import Header from './components/Header'
 import { NavigationContainer } from '@react-navigation/native'
 import TabNavigation from './navigation/TabNavigation'
 
-export default function App() {
-
-
+const App = () => {
 
   return (
       <SafeAreaProvider>
@@ -21,8 +19,6 @@ export default function App() {
 
       </SafeAreaProvider>
 
-
-   
   );
 }
 
@@ -51,3 +47,5 @@ const styles = StyleSheet.create({
     backgroundColor: "#FAFAFA"
   }
 });
+
+export default App

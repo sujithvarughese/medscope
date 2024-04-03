@@ -1,4 +1,4 @@
-import { Image, ImageBackground, Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Image, Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 const NewsTile = ({ source, title, url, urlToImage, date }) => {
 
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: 180,
-    height: 250,
+    height: 230,
     marginRight: 12,
     backgroundColor: "white",
     elevation: 8,
