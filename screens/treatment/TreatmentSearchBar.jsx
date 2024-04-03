@@ -4,16 +4,16 @@ import { medicalConditionsList } from '../../data/medicalConditions.js'
 import DropDownPicker from "react-native-dropdown-picker"
 import RNPickerSelect from 'react-native-picker-select';
 import { Picker } from "@react-native-picker/picker"
-const SearchBar = ({ selectedConditions, setSelectedConditions }) => {
+import { MaterialCommunityIcons } from '@expo/vector-icons'
+const TreatmentSearchBar = ({ selectedConditions, setSelectedConditions, resetConditions, handleSubmit }) => {
 
   const [isLoading, setIsLoading] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
   const [queryMatches, setQueryMatches] = useState([])
 
   const submitCondition = (condition) => {
-    console.log(condition)
     setSelectedConditions(prev => [...prev, condition])
-    setSearchQuery(prev => "")
+    setSearchQuery("")
   }
 
   useEffect(() => {
@@ -36,30 +36,32 @@ const SearchBar = ({ selectedConditions, setSelectedConditions }) => {
   return (
     <View style={styles.container}>
 
-      <TextInput
-        style={styles.searchBox}
-        value={searchQuery}
-        onChangeText={(query) => setSearchQuery(query)}
-        onSubmitEditing={submitCondition}
-        returnKeyType="search"
-        placeholder="Search health conditions"
-        dense={true}
-        clearButtonMode='always'
-        autoCapitalize="none"
-      >
-      </TextInput>
-
-      {searchQuery.length > 0 &&
-      <View style={styles.listContainer}>
-        <Picker
-          style={styles.list}
-          onValueChange={(value) => submitCondition(value)}
+      <View style={styles.searchSection}>
+        <TouchableOpacity onPress={resetConditions}><MaterialCommunityIcons name="restart" size={32} color="black" /></TouchableOpacity>
+        <TextInput
+          style={styles.searchBox}
+          value={searchQuery}
+          onChangeText={(query) => setSearchQuery(query)}
+          onSubmitEditing={submitCondition}
+          returnKeyType="search"
+          placeholder="Search health conditions"
+          dense={true}
+          clearButtonMode='always'
+          autoCapitalize="none"
         >
-          {queryMatches.map((queryMatch, index) =>  <Picker.Item key={index} label={queryMatch} value={queryMatch} />)}
-        </Picker>
+        </TextInput>
+        <TouchableOpacity onPress={handleSubmit}><MaterialCommunityIcons name="clipboard-text-search-outline" size={32} color="black" /></TouchableOpacity>
       </View>
 
-      }
+      <Text>{}</Text>
+
+      {searchQuery.length > 0 &&
+      <Picker
+        style={styles.picker}
+        onValueChange={(value) => submitCondition(value)}
+      >
+        {queryMatches.map((queryMatch, index) =>  <Picker.Item key={index} label={queryMatch} value={queryMatch} />)}
+      </Picker>}
 
     </View>
   )
@@ -69,24 +71,26 @@ const styles = StyleSheet.create({
   container: {
 
   },
+  searchSection: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 4,
+  },
   searchBox: {
+    backgroundColor: "white",
     borderColor: "#ccc",
     borderWidth: 1,
     borderRadius: 6,
     paddingHorizontal: 12,
     paddingVertical: 6,
+    width: 280,
+    alignSelf: "center"
 
   },
-  listContainer: {
-
-  },
-  list: {
-
-
-  },
-  listItemCondition: {
-
+  picker: {
+    backgroundColor: "white",
   }
 })
 
-export default SearchBar
+export default TreatmentSearchBar

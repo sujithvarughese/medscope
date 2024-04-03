@@ -2,7 +2,10 @@ import { Button, FlatList, StyleSheet, Switch, Text, TextInput, TouchableOpacity
 import { useEffect, useState } from 'react'
 import { medicalConditionsList } from '../../data/medicalConditions.js'
 import Slider from '@react-native-community/slider'
-import SearchBar from './SearchBar'
+import TreatmentSearchBar from './TreatmentSearchBar'
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
+
 
 const TreatmentForm = ({ fetchTreatmentPlan }) => {
 
@@ -11,13 +14,12 @@ const TreatmentForm = ({ fetchTreatmentPlan }) => {
   const [sex, setSex] = useState(false)
   const [selectedConditions, setSelectedConditions] = useState([])
 
-  const resetConditions = () => {
-    setSelectedConditions([])
-  }
-
   const removeSelectedCondition = (conditionToRemove) => {
     const updatedSelectedConditions = selectedConditions.filter(condition => condition !== conditionToRemove)
     setSelectedConditions(updatedSelectedConditions)
+  }
+  const resetConditions = () => {
+    setSelectedConditions([])
   }
 
   const handleSubmit = () => {
@@ -25,10 +27,8 @@ const TreatmentForm = ({ fetchTreatmentPlan }) => {
     fetchTreatmentPlan({ age, sex: selectedSex, medicalConditions: selectedConditions })
   }
 
-
   return (
     <View style={styles.container}>
-
       <View style={styles.ageSexGroup}>
         <View style={styles.ageGroup}>
           <Text>Age: </Text>
@@ -43,6 +43,7 @@ const TreatmentForm = ({ fetchTreatmentPlan }) => {
         <View style={styles.sexToggle}>
           <Text>{sex ? "Female" : "Male"}</Text>
           <Switch
+            style={styles.switch}
             value={sex}
             onValueChange={()=>setSex(!sex)}
             ios_backgroundColor="#81b0ff"
@@ -51,48 +52,39 @@ const TreatmentForm = ({ fetchTreatmentPlan }) => {
         </View>
       </View>
 
-      <SearchBar selectedConditions={selectedConditions} setSelectedConditions={setSelectedConditions}/>
-
-      <View style={styles.buttonGroup}>
-        <TouchableOpacity style={styles.button} onPress={handleSubmit}><Text>Search</Text></TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={resetConditions}><Text>Reset</Text></TouchableOpacity>
+      <View style={styles.searchBar}>
+        <TreatmentSearchBar
+          resetConditions={resetConditions}
+          handleSubmit={handleSubmit}
+          selectedConditions={selectedConditions}
+          setSelectedConditions={setSelectedConditions}
+        />
       </View>
 
-      <FlatList
-        data={selectedConditions}
-        keyExtractor={({item}) => item}
-        renderItem={({item}) =>
-          <View style={styles.listItemCondition}>
-            <Text>{item}</Text>
-            <TouchableOpacity onPress={()=>removeSelectedCondition(item)}><Text>x</Text></TouchableOpacity>
-          </View>}
-      />
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    alignSelf: "center",
-    width: 300,
-    gap: 10,
-    borderColor: "#ccc",
-    borderWidth: 1,
-    borderRadius: 6,
-    padding: 6,
+    gap: 8,
+    padding: 25,
+    backgroundColor: "dodgerblue",
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
   },
   ageSexGroup: {
     flexDirection: "row",
-    justifyContent: "space-between",
-    paddingHorizontal: 32,
+    justifyContent: "center",
+    gap: 20,
   },
   ageGroup: {
     flexDirection: "row",
-    justifyContent: "space-between",
     alignItems: "center"
   },
   ageInput: {
     borderColor: "#ccc",
+    backgroundColor: "white",
     borderWidth: 1,
     borderRadius: 6,
     paddingHorizontal: 12,
@@ -103,35 +95,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 4
+  },
+  switch: {
 
   },
 
-  listItemCondition: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-
-  input: {
-    borderColor: "#ccc",
-    borderWidth: 1,
-    borderRadius: 6,
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-  },
-  searchBox: {
-    flex: 1,
-  },
-  buttonGroup: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-
-  },
-  button: {
-    backgroundColor: "lightblue",
-    padding: 10,
-    borderRadius: 6,
-
-  },
 })
 
 export default TreatmentForm

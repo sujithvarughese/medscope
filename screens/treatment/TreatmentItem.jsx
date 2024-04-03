@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native'
-const TreatmentItem = ({ name, dose, description, precautions, risks }) => {
+const TreatmentItem = ({ name, dose, description, precautions, sideEffects }) => {
   return (
     <View style={styles.container}>
 
@@ -13,15 +13,18 @@ const TreatmentItem = ({ name, dose, description, precautions, risks }) => {
       <View style={styles.precautions}>
         <Text style={styles.title}>Precautions</Text>
         <View>
-          {precautions?.map(precaution =>
-          <Text>{'\u00B7'}<Text>{precaution.charAt(0).toUpperCase()}{precaution.substring(1)}.</Text></Text>)}
+          {precautions?.map((precaution, index) =>
+          <Text key={index}>{'\u00B7'}<Text>{precaution.charAt(0).toUpperCase()}{precaution.substring(1)}.</Text></Text>)}
         </View>
 
       </View>
 
-      <View style={styles.risks}>
-        <Text style={styles.title}>Risks</Text>
-        {risks?.map(risk=> <Text style={styles.text}>{'\u00B7'} {risk}</Text>)}
+      <View style={styles.sideEffects}>
+        <Text style={styles.title}>Side Effects</Text>
+        <View>
+          {sideEffects?.map((sideEffect, index) =>
+          <Text key={index} style={styles.text}>{'\u00B7'} {sideEffect}</Text>)}
+        </View>
       </View>
     </View>
   )
@@ -31,30 +34,25 @@ const styles = StyleSheet.create({
   container: {
     gap: 4,
     marginBottom: 14,
-
   },
   name: {
-    fontSize: 20,
-    fontWeight: "bold",
+    fontSize: 18,
+    fontWeight: "700",
     textTransform: "capitalize"
   },
   title: {
-    fontWeight: "bold",
+    fontWeight: "700",
   },
   dose: {
 
   },
   precautions: {
   },
-  listItem: {
-    paddingHorizontal: 8,
-  },
-  risks: {
+  sideEffects: {
 
   },
   text: {
     textTransform: "capitalize",
-
   },
 })
 

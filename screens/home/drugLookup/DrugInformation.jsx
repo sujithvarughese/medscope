@@ -11,18 +11,20 @@ const DrugInformation = ({ name, use, precautions, sideEffects }) => {
         <Text>{use}</Text>
       </View>
 
-
       <View style={styles.precautions}>
         <Text style={styles.title}>Precautions</Text>
-        {precautions?.map((precaution, index) => <Text key={index}>{precaution}</Text>)}
+        <View>
+          {precautions?.map((precaution, index) => <Text key={index}>{precaution}</Text>)}
+        </View>
       </View>
 
       <View style={styles.sideEffects}>
         <Text style={styles.title}>Side Effects</Text>
-        {sideEffects?.map((sideEffect, index) =>
-        <Text key={index} style={styles.text}><Text>{'\u00B7'}</Text>{sideEffect}</Text>)}
+        <View>
+          {sideEffects?.map((sideEffect, index) =>
+          <Text key={index} style={styles.text}><Text>{'\u00B7'}</Text>{sideEffect}</Text>)}
+        </View>
       </View>
-
     </View>
   )
 }
@@ -38,12 +40,13 @@ const styles = StyleSheet.create({
     textTransform: "capitalize"
   },
   title: {
-    fontWeight: "bold",
+    fontWeight: "700",
   },
   use: {
 
   },
   precautions: {
+
   },
   sideEffects: {
 
@@ -53,7 +56,6 @@ const styles = StyleSheet.create({
   },
   text: {
     textTransform: "capitalize",
-
   },
 })
 

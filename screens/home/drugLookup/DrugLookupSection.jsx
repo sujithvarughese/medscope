@@ -26,7 +26,6 @@ const DrugLookupSection = () => {
         <DrugsSearchBar style={styles.search} fetchDrugInformation={fetchDrugInformation} />
       </View>
 
-
       {drugInformation !== null &&
       <DrugInformation
         style={styles.information}

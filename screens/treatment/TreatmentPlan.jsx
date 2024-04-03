@@ -5,12 +5,16 @@ const TreatmentPlan = ({ treatment }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Treatment Options</Text>
-      <FlatList
-        style={styles.list}
-        data={treatment}
-        keyExtractor={item => item.name}
-        renderItem={({item}) => <TreatmentItem name={item.name} dose={item.dose} description={item.description} precautions={item.precautions} risks={item.risks}/>}
-      />
+      <View style={styles.treatment}>
+        {treatment.map(item =>
+        <TreatmentItem
+          name={item.name}
+          dose={item.dose}
+          description={item.description}
+          precautions={item.precautions}
+          sideEffects={item.sideEffects}
+        />)}
+      </View>
     </View>
   )
 }
@@ -22,9 +26,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     textAlign: "center"
-  },
-  list: {
-
   },
   treatment: {
 
