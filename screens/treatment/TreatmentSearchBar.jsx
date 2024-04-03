@@ -5,6 +5,7 @@ import DropDownPicker from "react-native-dropdown-picker"
 import RNPickerSelect from 'react-native-picker-select';
 import { Picker } from "@react-native-picker/picker"
 import { MaterialCommunityIcons } from '@expo/vector-icons'
+import { FontAwesome5 } from '@expo/vector-icons';
 const TreatmentSearchBar = ({ selectedConditions, setSelectedConditions, resetConditions, handleSubmit }) => {
 
   const [isLoading, setIsLoading] = useState(false)
@@ -50,7 +51,7 @@ const TreatmentSearchBar = ({ selectedConditions, setSelectedConditions, resetCo
           autoCapitalize="none"
         >
         </TextInput>
-        <TouchableOpacity onPress={handleSubmit}><MaterialCommunityIcons name="clipboard-text-search-outline" size={32} color="black" /></TouchableOpacity>
+        <TouchableOpacity onPress={handleSubmit}><FontAwesome5 name="search" size={24} color="black" /></TouchableOpacity>
       </View>
 
       <Text>{}</Text>

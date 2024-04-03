@@ -1,7 +1,8 @@
-import { StyleSheet, TextInput, View } from 'react-native'
+import { StyleSheet, TextInput, TouchableOpacity, View } from 'react-native'
 import { useEffect, useState } from 'react'
 import { drugListData } from '../../../data/drugList.js'
 import { Picker } from "@react-native-picker/picker"
+import { FontAwesome5 } from '@expo/vector-icons';
 const DrugsSearchBar = ({ fetchDrugInformation }) => {
 
   const [isLoading, setIsLoading] = useState(false)
@@ -43,6 +44,7 @@ const DrugsSearchBar = ({ fetchDrugInformation }) => {
         autoCapitalize="none"
       >
       </TextInput>
+
 
       {searchQuery.length > 0 &&
       <Picker

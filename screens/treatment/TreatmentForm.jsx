@@ -5,7 +5,7 @@ import Slider from '@react-native-community/slider'
 import TreatmentSearchBar from './TreatmentSearchBar'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
-
+import { Ionicons } from '@expo/vector-icons';
 
 const TreatmentForm = ({ fetchTreatmentPlan }) => {
 
@@ -29,7 +29,7 @@ const TreatmentForm = ({ fetchTreatmentPlan }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.headingText}>Drug Search</Text>
+      <Text style={styles.headingText}>Find Treatment</Text>
       <View style={styles.ageSexGroup}>
         <View style={styles.ageGroup}>
           <Text>Age: </Text>
@@ -53,13 +53,26 @@ const TreatmentForm = ({ fetchTreatmentPlan }) => {
         </View>
       </View>
 
-      <View style={styles.searchBar}>
+      <View>
         <TreatmentSearchBar
           resetConditions={resetConditions}
           handleSubmit={handleSubmit}
           selectedConditions={selectedConditions}
           setSelectedConditions={setSelectedConditions}
         />
+      </View>
+
+      <View>
+        {selectedConditions.map(condition =>
+          <View style={styles.selectedConditions}>
+            <Text>{condition}</Text>
+            <TouchableOpacity onPress={() => removeSelectedCondition(condition)}>
+              <Ionicons name="remove-circle-sharp" size={24} color="black" />
+            </TouchableOpacity>
+          </View>
+
+
+        )}
       </View>
 
     </View>
@@ -81,8 +94,8 @@ const styles = StyleSheet.create({
   },
   ageSexGroup: {
     flexDirection: "row",
-    justifyContent: "center",
-    gap: 20,
+    justifyContent: "space-between",
+    paddingHorizontal: 52,
   },
   ageGroup: {
     flexDirection: "row",
@@ -105,6 +118,11 @@ const styles = StyleSheet.create({
   switch: {
 
   },
+  selectedConditions: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center"
+  }
 
 })
 
