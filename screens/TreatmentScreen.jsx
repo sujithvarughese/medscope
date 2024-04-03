@@ -10,7 +10,7 @@ const TreatmentScreen = () => {
 
   const fetchTreatmentPlan = async ({ age, sex, medicalConditions }) => {
     try {
-      const response = await axios.post("http://localhost:8800/api/v1/conditions", { age, sex, medicalConditions })
+      const response = await axios.post("conditions", { age, sex, medicalConditions })
       const { treatmentPlan } = response.data
       setTreatment(treatmentPlan)
     } catch (error) {

@@ -14,9 +14,7 @@ const TreatmentItem = ({ name, dose, description, precautions, risks }) => {
         <Text style={styles.title}>Precautions</Text>
         <View>
           {precautions?.map(precaution =>
-            <View>
-              <Text>{'\u00B7'}<Text>{precaution.charAt(0).toUpperCase()}{precaution.substring(1)}.</Text></Text>
-            </View>)}
+          <Text>{'\u00B7'}<Text>{precaution.charAt(0).toUpperCase()}{precaution.substring(1)}.</Text></Text>)}
         </View>
 
       </View>

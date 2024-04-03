@@ -2,15 +2,15 @@ import { StyleSheet, TextInput, View } from 'react-native'
 import { useEffect, useState } from 'react'
 import { drugListData } from '../../../data/drugList.js'
 import { Picker } from "@react-native-picker/picker"
-const SearchDrugs = () => {
+const SearchDrugs = ({ fetchDrugInformation }) => {
 
   const [isLoading, setIsLoading] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
   const [queryMatches, setQueryMatches] = useState([])
 
   const handleSubmit = (drug) => {
-    console.log(drug)
     setSearchQuery("")
+    fetchDrugInformation(drug)
   }
 
   useEffect(() => {
@@ -35,9 +35,9 @@ const SearchDrugs = () => {
         style={styles.searchBox}
         value={searchQuery}
         onChangeText={(query) => setSearchQuery(query)}
-        onSubmitEditing={handleSubmit}
+        onSubmitEditing={(value) => handleSubmit(value)}
         returnKeyType="search"
-        placeholder="search symptoms..."
+        placeholder="search ingredients or drug brand name"
         autoFocus={true}
         dense={true}
         clearButtonMode='always'

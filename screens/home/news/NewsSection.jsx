@@ -2,6 +2,7 @@ import { FlatList, ScrollView, StyleSheet, Text, View } from 'react-native'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import NewsTile from './NewsTile'
+import connect from '../../../utils/connect'
 
 const NewsSection = () => {
 
@@ -9,7 +10,7 @@ const NewsSection = () => {
 
   const fetchArticles = async () => {
     try {
-      const response = await axios("http://localhost:8800/api/v1/news")
+      const response = await connect("news")
       const { articles } = response.data
       setNewsArticles(articles)
     } catch (error) {
