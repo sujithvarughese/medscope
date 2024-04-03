@@ -42,8 +42,7 @@ const SearchBar = ({ selectedConditions, setSelectedConditions }) => {
         onChangeText={(query) => setSearchQuery(query)}
         onSubmitEditing={submitCondition}
         returnKeyType="search"
-        placeholder="search symptoms..."
-        autoFocus={true}
+        placeholder="Search health conditions"
         dense={true}
         clearButtonMode='always'
         autoCapitalize="none"

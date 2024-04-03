@@ -37,8 +37,7 @@ const SearchDrugs = ({ fetchDrugInformation }) => {
         onChangeText={(query) => setSearchQuery(query)}
         onSubmitEditing={(value) => handleSubmit(value)}
         returnKeyType="search"
-        placeholder="search ingredients or drug brand name"
-        autoFocus={true}
+        placeholder="Search ingredients or drug brand name"
         dense={true}
         clearButtonMode='always'
         autoCapitalize="none"

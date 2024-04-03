@@ -5,8 +5,11 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import { NavigationContainer } from '@react-navigation/native'
 import TabNavigation from './navigation/TabNavigation'
-
+import Constants from "expo-constants"
 export default function App() {
+
+  console.log(process.env)
+  console.log(Constants.expoConfig)
 
   return (
       <SafeAreaProvider>
