@@ -2,7 +2,7 @@ import { StyleSheet, TextInput, View } from 'react-native'
 import { useEffect, useState } from 'react'
 import { drugListData } from '../../../data/drugList.js'
 import { Picker } from "@react-native-picker/picker"
-const SearchDrugs = ({ fetchDrugInformation }) => {
+const DrugsSearchBar = ({ fetchDrugInformation }) => {
 
   const [isLoading, setIsLoading] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
 
   },
   searchBox: {
+    backgroundColor: "white",
     borderColor: "#ccc",
     borderWidth: 1,
     borderRadius: 6,
@@ -84,4 +85,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default SearchDrugs
+export default DrugsSearchBar

@@ -8,15 +8,9 @@ const App = () => {
 
   return (
       <SafeAreaProvider>
-
-        <SafeAreaView style={styles.header}>
-          <Header/>
-        </SafeAreaView>
-
         <NavigationContainer>
           <TabNavigation />
         </NavigationContainer>
-
       </SafeAreaProvider>
 
   );

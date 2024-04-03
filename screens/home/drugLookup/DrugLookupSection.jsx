@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native'
-import SearchDrugs from './SearchDrugs'
+import DrugsSearchBar from './DrugsSearchBar'
 import DrugInformation from './DrugInformation'
 import connect from '../../../utils/connect'
 import { useState } from 'react'
 
-const DrugLookup = () => {
+const DrugLookupSection = () => {
 
   const [drugInformation, setDrugInformation] = useState(null)
 
@@ -20,7 +20,7 @@ const DrugLookup = () => {
 
   return (
     <View style={styles.container}>
-      <SearchDrugs style={styles.search} fetchDrugInformation={fetchDrugInformation} />
+      <DrugsSearchBar style={styles.search} fetchDrugInformation={fetchDrugInformation} />
       {drugInformation !== null &&
         <DrugInformation
           style={styles.information}
@@ -37,7 +37,9 @@ const DrugLookup = () => {
 
 const styles = StyleSheet.create({
   container: {
-
+    padding: 10,
+    paddingTop: 20,
+    backgroundColor: "dodgerblue"
   },
   search: {
 
@@ -47,4 +49,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default DrugLookup
+export default DrugLookupSection
