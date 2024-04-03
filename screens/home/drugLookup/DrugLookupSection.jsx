@@ -20,15 +20,21 @@ const DrugLookupSection = () => {
 
   return (
     <View style={styles.container}>
-      <DrugsSearchBar style={styles.search} fetchDrugInformation={fetchDrugInformation} />
+
+      <View style={styles.searchSection}>
+        <Text style={styles.headingText}>Drug Search</Text>
+        <DrugsSearchBar style={styles.search} fetchDrugInformation={fetchDrugInformation} />
+      </View>
+
+
       {drugInformation !== null &&
-        <DrugInformation
-          style={styles.information}
-          name={drugInformation.name}
-          use={drugInformation.use}
-          precautions={drugInformation.precautions}
-          sideEffects={drugInformation.sideEffects}
-        />
+      <DrugInformation
+        style={styles.information}
+        name={drugInformation.name}
+        use={drugInformation.use}
+        precautions={drugInformation.precautions}
+        sideEffects={drugInformation.sideEffects}
+      />
       }
 
     </View>
@@ -37,9 +43,19 @@ const DrugLookupSection = () => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 10,
-    paddingTop: 20,
-    backgroundColor: "dodgerblue"
+
+  },
+  searchSection: {
+    gap: 8,
+    padding: 25,
+    backgroundColor: "dodgerblue",
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+  },
+  headingText: {
+    textAlign: "center",
+    fontWeight: "600",
+    fontSize: 18,
   },
   search: {
 

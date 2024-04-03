@@ -30,12 +30,11 @@ const DrugInformation = ({ name, use, precautions, sideEffects }) => {
 const styles = StyleSheet.create({
   container: {
     gap: 4,
-    marginBottom: 14,
-
+    padding: 6,
   },
   name: {
-    fontSize: 20,
-    fontWeight: "bold",
+    fontSize: 18,
+    fontWeight: "700",
     textTransform: "capitalize"
   },
   title: {

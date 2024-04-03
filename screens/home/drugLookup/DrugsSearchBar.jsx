@@ -45,16 +45,13 @@ const DrugsSearchBar = ({ fetchDrugInformation }) => {
       </TextInput>
 
       {searchQuery.length > 0 &&
-        <View style={styles.listContainer}>
-          <Picker
-            style={styles.list}
-            onValueChange={(value) => handleSubmit(value)}
-          >
-            {queryMatches.map((queryMatch, index) =>  <Picker.Item key={index} label={queryMatch} value={queryMatch} />)}
-          </Picker>
-        </View>
-
-      }
+      <Picker
+        style={styles.picker}
+        onValueChange={(value) => handleSubmit(value)}
+      >
+        {queryMatches.map((queryMatch, index) =>
+        <Picker.Item style={styles.pickerItem} key={index} label={queryMatch} value={queryMatch} />)}
+      </Picker>}
 
     </View>
   )
@@ -71,18 +68,15 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     paddingHorizontal: 12,
     paddingVertical: 6,
+    width: 280,
+    alignSelf: "center"
+  },
+  picker: {
+    backgroundColor: "white",
+  },
+  pickerItem: {
 
   },
-  listContainer: {
-
-  },
-  list: {
-
-
-  },
-  listItemCondition: {
-
-  }
 })
 
 export default DrugsSearchBar
