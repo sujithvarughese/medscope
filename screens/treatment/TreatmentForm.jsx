@@ -29,6 +29,7 @@ const TreatmentForm = ({ fetchTreatmentPlan }) => {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.headingText}>Drug Search</Text>
       <View style={styles.ageSexGroup}>
         <View style={styles.ageGroup}>
           <Text>Age: </Text>
@@ -72,6 +73,11 @@ const styles = StyleSheet.create({
     backgroundColor: "dodgerblue",
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
+  },
+  headingText: {
+    textAlign: "center",
+    fontWeight: "600",
+    fontSize: 18,
   },
   ageSexGroup: {
     flexDirection: "row",

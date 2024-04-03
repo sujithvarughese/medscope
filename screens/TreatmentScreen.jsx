@@ -23,11 +23,9 @@ const TreatmentScreen = () => {
 
   return (
     <ScrollView style={styles.container}>
-      <SafeAreaView>
-        <TreatmentForm style={styles.treatmentForm} fetchTreatmentPlan={fetchTreatmentPlan}/>
-        {treatment.length > 0 &&
-        <TreatmentPlan style={styles.treatmentPlan} treatment={treatment}/>}
-      </SafeAreaView>
+      <TreatmentForm style={styles.treatmentForm} fetchTreatmentPlan={fetchTreatmentPlan}/>
+      {treatment.length > 0 &&
+      <TreatmentPlan style={styles.treatmentPlan} treatment={treatment}/>}
     </ScrollView>
   )
 }

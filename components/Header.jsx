@@ -12,9 +12,9 @@ const Header = () => {
       </View>
 
 
-      <View>
+      {/*<View>
         <Text style={styles.welcomeText}>Welcome!</Text>
-      </View>
+      </View>*/}
 
     </View>
   )

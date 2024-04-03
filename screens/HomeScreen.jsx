@@ -7,9 +7,6 @@ import Header from '../components/Header'
 const HomeScreen = () => {
   return (
     <ScrollView style={styles.container}>
-      <SafeAreaView style={styles.header}>
-        <Header/>
-      </SafeAreaView>
       <DrugLookupSection style={styles.drugs} />
       <NewsSection style={styles.news} />
     </ScrollView>
@@ -18,10 +15,6 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   container: {
 
-  },
-  header: {
-    backgroundColor: "#FFFFFF",
-    height: 110,
   },
   news: {
 
