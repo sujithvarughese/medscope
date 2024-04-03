@@ -1,12 +1,11 @@
 import { View, Text, StyleSheet } from 'react-native'
 import NewsSection from './home/news/NewsSection'
-import SearchDrugs from './home/drugLookup/SearchDrugs'
-import DrugInformation from './home/drugLookup/DrugInformation'
 import DrugLookup from './home/drugLookup/DrugLookup'
 
 const HomeScreen = () => {
   return (
     <View>
+      <Text>{process?.env.NODE_ENV}</Text>
       <NewsSection style={styles.news} />
       <DrugLookup />
     </View>

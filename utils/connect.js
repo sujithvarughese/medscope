@@ -1,8 +1,8 @@
 import axios from "axios"
+import { config } from './constants'
 
 const connect = axios.create({
-  baseURL: process.env.EXPO_PUBLIC_API_URL,
-  withCredentials: true,
+  baseURL: config.url.API_URL,
 });
 
 connect.interceptors.response.use(

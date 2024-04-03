@@ -1,12 +1,14 @@
+import { PROD_API, DEV_API } from '@env'
+
 const prod = {
   url: {
-    API_URL: process.env.EXPO_PUBLIC_PROD_API
+    API_URL: PROD_API
   }
 };
 
 const dev = {
   url: {
-    API_URL: process.env.EXPO_PUBLIC_DEV_API
+    API_URL: DEV_API
   }
 };
 

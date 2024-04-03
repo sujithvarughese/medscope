@@ -3,18 +3,12 @@
     "development": {
       "channel": "development",
       "developmentClient": true,
-      "distribution": "internal",
-      "env": {
-        "API_URL": "http://localhost:8800/api/v1"
-      }
+      "distribution": "internal"
     },
     "preview": {
       "channel": "preview",
       "ios": {
         "simulator": true
-      },
-      "env": {
-        "API_URL": "https://exuberant-pear-stockings.cyclic.app"
       }
     },
     "production": {
