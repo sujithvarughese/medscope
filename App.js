@@ -1,18 +1,23 @@
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context'
 import { NavigationContainer } from '@react-navigation/native'
-import TabNavigation from './navigation/TabNavigation'
+import TabNavigator from './navigation/TabNavigator'
 import Header from './components/Header'
+import { StatusBar } from 'expo-status-bar';
 import { StyleSheet } from 'react-native'
-
+import { createNativeStackNavigator } from 'react-native-screens/native-stack'
+import WelcomeScreen from './screens/WelcomeScreen'
+const Stack = createNativeStackNavigator()
 const App = () => {
+
+
 
   return (
       <SafeAreaProvider>
-        <SafeAreaView style={styles.header}>
-          <Header/>
-        </SafeAreaView>
         <NavigationContainer>
-          <TabNavigation />
+          <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="Welcome" component={WelcomeScreen} />
+            <Stack.Screen name="Home" component={TabNavigator} />
+          </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaProvider>
   );

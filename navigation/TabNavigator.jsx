@@ -1,15 +1,19 @@
-import {View, Text } from 'react-native'
+
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import HomeScreen from '../screens/HomeScreen'
 import TreatmentScreen from '../screens/TreatmentScreen'
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Fontisto } from '@expo/vector-icons';
+import { SafeAreaView } from 'react-native-safe-area-context'
+import Header from '../components/Header'
 const Tab = createBottomTabNavigator()
-const TabNavigation = () => {
-
+const TabNavigator = () => {
 
   return (
     <Tab.Navigator screenOptions={{ headerShown: false }}>
+      <SafeAreaView style={styles.header}>
+        <Header/>
+      </SafeAreaView>
       <Tab.Screen
         name="home"
         component={HomeScreen}
@@ -30,4 +34,4 @@ const TabNavigation = () => {
   )
 }
 
-export default TabNavigation
+export default TabNavigator
