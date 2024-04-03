@@ -1,8 +1,7 @@
 import axios from "axios"
-import { config } from "./constants.js";
 
 const connect = axios.create({
-  baseURL: config.url.API_URL,
+  baseURL: process.env.EXPO_PUBLIC_API_URL,
   withCredentials: true,
 });
 

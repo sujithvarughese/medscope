@@ -2,12 +2,19 @@
   "build": {
     "development": {
       "developmentClient": true,
-      "distribution": "internal"
-    },
-    "preview": {
       "distribution": "internal",
       "env": {
-        "NODE_ENV": "production"
+        "NODE_ENV": "deve",
+        "EXPO_PUBLIC_API_URL": "http://localhost:8800/api/v1"
+      }
+    },
+    "preview": {
+      "ios": {
+        "simulator": true
+      },
+      "env": {
+        "NODE_ENV": "devel",
+        "EXPO_PUBLIC_API_URL": "https://exuberant-pear-stockings.cyclic.app"
       }
     },
     "production": {}
