@@ -1,10 +1,14 @@
-import { StyleSheet, Text, View } from 'react-native'
-import DrugsSearchBar from './DrugsSearchBar'
-import DrugInformation from './DrugInformation'
-import connect from '../../../utils/connect'
-import { useState } from 'react'
+import { View, StyleSheet, Text, ScrollView } from 'react-native'
 
-const DrugLookupSection = () => {
+import { useState } from 'react'
+import axios from 'axios'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import connect from '../utils/connect'
+import DrugsSearchBar from './drug-research/DrugsSearchBar'
+import DrugInformation from './drug-research/DrugInformation'
+import { FontAwesome6 } from '@expo/vector-icons';
+
+const DrugResearchScreen = () => {
 
   const [drugInformation, setDrugInformation] = useState(null)
 
@@ -27,15 +31,14 @@ const DrugLookupSection = () => {
       </View>
 
       {drugInformation !== null &&
-      <DrugInformation
-        style={styles.information}
-        name={drugInformation.name}
-        use={drugInformation.use}
-        precautions={drugInformation.precautions}
-        sideEffects={drugInformation.sideEffects}
-      />
+        <DrugInformation
+          style={styles.information}
+          name={drugInformation.name}
+          use={drugInformation.use}
+          precautions={drugInformation.precautions}
+          sideEffects={drugInformation.sideEffects}
+        />
       }
-
     </View>
   )
 }
@@ -64,4 +67,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default DrugLookupSection
+export default DrugResearchScreen

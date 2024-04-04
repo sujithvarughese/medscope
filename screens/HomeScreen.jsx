@@ -1,20 +1,19 @@
 import { View, Text, StyleSheet, ScrollView } from 'react-native'
 import NewsSection from './home/news/NewsSection'
-import DrugLookupSection from './home/drugLookup/DrugLookupSection'
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context'
 import Header from '../components/Header'
+import HealthTips from './home/healthTips/HealthTips'
 
 const HomeScreen = () => {
   return (
     <ScrollView style={styles.container}>
-      <DrugLookupSection style={styles.drugs} />
+      <HealthTips />
       <NewsSection style={styles.news} />
     </ScrollView>
   )
 }
 const styles = StyleSheet.create({
   container: {
-
   },
   headerContainer: {
     height: 110
