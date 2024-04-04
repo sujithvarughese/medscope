@@ -4,12 +4,14 @@
     "slug": "medscope",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logo_nobg.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/logo.jpeg",
+      "image": "./assets/logo_nobg.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#ffffff",
+      "length": "70px",
+      "height": "70px"
     },
     "assetBundlePatterns": [
       "**/*"
