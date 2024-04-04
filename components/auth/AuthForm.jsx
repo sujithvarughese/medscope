@@ -70,7 +70,14 @@ const AuthForm = ({ isLogin, credentialsInvalid }) => {
               />
             )}
           </View>
-
+          <View>
+            <Pressable
+              style={styles.altButton}
+              onPress={() => navigation.navigate("Home")}
+            >
+              <Text style={styles.altButtonText}>Home</Text>
+            </Pressable>
+          </View>
 
           {isLogin &&
             <Pressable
@@ -99,6 +106,8 @@ const AuthForm = ({ isLogin, credentialsInvalid }) => {
             </Pressable>
           </View>
         </View>
+
+
 
 
       </ImageBackground>

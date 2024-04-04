@@ -11,9 +11,6 @@ const TabNavigator = () => {
 
   return (
     <Tab.Navigator screenOptions={{ headerShown: false }}>
-      <SafeAreaView style={styles.header}>
-        <Header/>
-      </SafeAreaView>
       <Tab.Screen
         name="home"
         component={HomeScreen}

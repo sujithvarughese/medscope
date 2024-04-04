@@ -11,8 +11,6 @@ import SignupScreen from './screens/SignupScreen'
 const Stack = createNativeStackNavigator()
 const App = () => {
 
-
-
   return (
       <SafeAreaProvider>
         <NavigationContainer>
