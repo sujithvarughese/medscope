@@ -6,16 +6,10 @@ import Header from '../components/Header'
 
 const HomeScreen = () => {
   return (
-    <SafeAreaProvider>
-      <ScrollView style={styles.container}>
-        <SafeAreaView style={styles.headerContainer}>
-          <Header />
-        </SafeAreaView>
-        <DrugLookupSection style={styles.drugs} />
-        <NewsSection style={styles.news} />
-      </ScrollView>
-    </SafeAreaProvider>
-
+    <ScrollView style={styles.container}>
+      <DrugLookupSection style={styles.drugs} />
+      <NewsSection style={styles.news} />
+    </ScrollView>
   )
 }
 const styles = StyleSheet.create({

@@ -6,7 +6,7 @@ import { colors } from '../../utils/styles'
 import Input from '../ui/Input'
 import welcomeImage from "../../assets/welcome.jpeg"
 
-const AuthForm = ({ isLogin, credentialsInvalid, onSubmit }) => {
+const AuthForm = ({ isLogin, credentialsInvalid, onSubmit, loginAsGuest }) => {
 
   const navigation = useNavigation()
 
@@ -70,14 +70,6 @@ const AuthForm = ({ isLogin, credentialsInvalid, onSubmit }) => {
               />
             )}
           </View>
-          <View>
-            <Pressable
-              style={styles.altButton}
-              onPress={() => navigation.navigate("Home")}
-            >
-              <Text style={styles.altButtonText}>Home</Text>
-            </Pressable>
-          </View>
 
           {isLogin &&
             <Pressable
@@ -88,12 +80,20 @@ const AuthForm = ({ isLogin, credentialsInvalid, onSubmit }) => {
             </Pressable>}
 
 
-          <Pressable
-            style={styles.submitButton}
-            onPress={submitHandler}
-          >
-            <Text style={styles.buttonText}>{isLogin ? "LOG IN" : "SIGN UP"}</Text>
-          </Pressable>
+          <View style={styles.buttonGroup}>
+            <Pressable
+              style={styles.submitButton}
+              onPress={submitHandler}
+            >
+              <Text style={styles.buttonText}>{isLogin ? "LOG IN" : "SIGN UP"}</Text>
+            </Pressable>
+            <Pressable
+              style={styles.guestButton}
+              onPress={loginAsGuest}
+            >
+              <Text style={styles.guestButtonText}>TAKE A TOUR</Text>
+            </Pressable>
+          </View>
 
 
           <View style={styles.altGroup}>
@@ -141,6 +141,10 @@ const styles = StyleSheet.create({
   forgotPasswordText: {
     color: colors.colorGray
   },
+  buttonGroup: {
+    alignItems: "center",
+    gap: 20,
+  },
   submitButton: {
     alignItems: "center",
     width: 300,
@@ -168,6 +172,23 @@ const styles = StyleSheet.create({
     fontWeight: "700",
   },
   buttonText: {
+    color: "#FFFFFF",
+    fontWeight: "700"
+  },
+  guestButton: {
+    alignItems: "center",
+    width: 300,
+    borderRadius: 50,
+    borderColor: "#FFFFFF",
+    borderWidth: 1.2,
+    paddingVertical: 16,
+    elevation: 5,
+    shadowColor: 'black',
+    shadowOffset: { width: 1, height: 1 },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+  },
+  guestButtonText: {
     color: "#FFFFFF",
     fontWeight: "700"
   }

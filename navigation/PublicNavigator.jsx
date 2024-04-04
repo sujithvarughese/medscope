@@ -3,7 +3,6 @@ import WelcomeScreen from '../screens/WelcomeScreen'
 import LoginScreen from '../screens/LoginScreen'
 import SignupScreen from '../screens/SignupScreen'
 
-
 const Stack = createNativeStackNavigator()
 const AuthenticatedTabNavigator = () => {
 

@@ -1,12 +1,35 @@
-import { Image, ImageBackground, Pressable, StyleSheet, Text, View } from 'react-native'
+import { Alert, Image, ImageBackground, Pressable, StyleSheet, Text, View } from 'react-native'
+import { useState } from "react"
 import { useNavigation } from "@react-navigation/native"
 import logo from "../assets/logo_nobg.png"
 import welcomeImage from "../assets/welcome.jpeg"
 import { colors } from '../utils/styles'
+import connect from '../utils/connect'
+import { useAuthContext } from '../context/auth-context'
+import LoadingOverlay from '../components/ui/LoadingOverlay'
 
 const WelcomeScreen = () => {
 
   const navigation = useNavigation()
+  const [isAuthenticating, setIsAuthenticating] = useState(false)
+  const { authenticateUser } = useAuthContext()
+  const loginAsGuest = async () => {
+    try {
+      setIsAuthenticating(true)
+      const response = await connect.post("auth/guest")
+      const { token } = response.data
+      authenticateUser(token)
+    } catch (error) {
+      Alert.alert("Authentication failed")
+    } finally {
+      setIsAuthenticating(false)
+    }
+  }
+
+  if (isAuthenticating) {
+    return <LoadingOverlay message="Logging in user..." />
+  }
+
   return (
     <View style={styles.container}>
       <ImageBackground style={styles.background} source={welcomeImage}>
@@ -33,6 +56,12 @@ const WelcomeScreen = () => {
               onPress={() => navigation.navigate("Signup")}
             >
               <Text style={styles.buttonText}>SIGN UP</Text>
+            </Pressable>
+            <Pressable
+              style={styles.guestButton}
+              onPress={loginAsGuest}
+            >
+              <Text style={styles.guestButtonText}>TAKE A TOUR</Text>
             </Pressable>
           </View>
         </View>
@@ -116,6 +145,23 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
   },
   buttonText: {
+    color: "#FFFFFF",
+    fontWeight: "700"
+  },
+  guestButton: {
+    alignItems: "center",
+    width: 300,
+    borderRadius: 50,
+    borderColor: "#FFFFFF",
+    borderWidth: 1.2,
+    paddingVertical: 16,
+    elevation: 5,
+    shadowColor: 'black',
+    shadowOffset: { width: 1, height: 1 },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+  },
+  guestButtonText: {
     color: "#FFFFFF",
     fontWeight: "700"
   }

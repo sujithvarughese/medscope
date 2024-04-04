@@ -1,6 +1,9 @@
 import { Alert, StyleSheet, View } from 'react-native';
 import { useState } from "react"
 import AuthForm from './AuthForm'
+import { useNavigation } from '@react-navigation/native'
+import { useAuthContext } from '../../context/auth-context'
+import connect from '../../utils/connect'
 
 const AuthContent = ({ isLogin, onAuthenticate }) => {
 
@@ -35,9 +38,24 @@ const AuthContent = ({ isLogin, onAuthenticate }) => {
     onAuthenticate({ email, password })
   }
 
+  const [isAuthenticating, setIsAuthenticating] = useState(false)
+  const { authenticateUser } = useAuthContext()
+  const loginAsGuest = async () => {
+    try {
+      setIsAuthenticating(true)
+      const response = await connect.post("auth/guest")
+      const { token } = response.data
+      authenticateUser(token)
+    } catch (error) {
+      Alert.alert("Authentication failed")
+    } finally {
+      setIsAuthenticating(false)
+    }
+  }
+
   return (
     <View style={styles.container}>
-      <AuthForm isLogin={isLogin} credentialsInvalid={false} onSubmit={submitHandler}/>
+      <AuthForm isLogin={isLogin} credentialsInvalid={false} onSubmit={submitHandler} loginAsGuest={loginAsGuest}/>
     </View>
   )
 }
