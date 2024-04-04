@@ -1,14 +1,15 @@
-
 import { Image, ImageBackground, Pressable, StyleSheet, Text, View } from 'react-native'
+import { useNavigation } from "@react-navigation/native"
 import logo from "../assets/logo_nobg.png"
 import welcomeImage from "../assets/welcome.jpeg"
 import { colors } from '../utils/styles'
 
 const WelcomeScreen = () => {
+
+  const navigation = useNavigation()
   return (
     <View style={styles.container}>
       <ImageBackground style={styles.background} source={welcomeImage}>
-
         <View style={styles.backgroundOverlay}>
           <View style={styles.textGroup}>
             <Text style={styles.welcome}>Welcome</Text>
@@ -21,8 +22,18 @@ const WelcomeScreen = () => {
           </View>
 
           <View style={styles.buttonGroup}>
-            <Pressable style={styles.loginButton}><Text style={styles.buttonText}>LOGIN NOW</Text></Pressable>
-            <Pressable style={styles.signupButton}><Text style={styles.buttonText}>SIGN UP</Text></Pressable>
+            <Pressable
+              style={styles.loginButton}
+              onPress={() => navigation.navigate("Login")}
+            >
+              <Text style={styles.buttonText}>LOGIN NOW</Text>
+            </Pressable>
+            <Pressable
+              style={styles.signupButton}
+              onPress={() => navigation.navigate("Signup")}
+            >
+              <Text style={styles.buttonText}>SIGN UP</Text>
+            </Pressable>
           </View>
         </View>
 
@@ -74,8 +85,6 @@ const styles = StyleSheet.create({
   caption: {
     color: "#FFFFFF",
     fontSize: 16,
-
-
   },
   buttonGroup: {
     alignItems: "center",
@@ -108,6 +117,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "#FFFFFF",
+    fontWeight: "700"
   }
 })
 

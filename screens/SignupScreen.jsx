@@ -1,17 +1,5 @@
+import AuthContent from '../components/auth/AuthContent'
 
-import { StyleSheet, View } from 'react-native'
-
-const SignupScreen = () => {
-  return (
-    <View style={styles.container}>
-      
-    </View>
-  )
-}
-const styles = StyleSheet.create({
-  container: {
-
-  }
-})
+const SignupScreen = () => <AuthContent isLogin={false} />
 
 export default SignupScreen
