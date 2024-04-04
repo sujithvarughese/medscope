@@ -6,7 +6,7 @@ import { colors } from '../../utils/styles'
 import Input from '../ui/Input'
 import welcomeImage from "../../assets/welcome.jpeg"
 
-const AuthForm = ({ isLogin, credentialsInvalid }) => {
+const AuthForm = ({ isLogin, credentialsInvalid, onSubmit }) => {
 
   const navigation = useNavigation()
 
@@ -22,8 +22,8 @@ const AuthForm = ({ isLogin, credentialsInvalid }) => {
     confirmPassword: passwordsDontMatch,
   } = credentialsInvalid;
 
-  const handleSubmit = (action) => {
-    console.log(action)
+  const submitHandler = () => {
+    onSubmit({ email: enteredEmail, confirmEmail: enteredConfirmEmail, password: enteredPassword, confirmPassword: enteredConfirmPassword})
   }
   const handlePw = () => {
     console.log("forgot password")
@@ -47,7 +47,7 @@ const AuthForm = ({ isLogin, credentialsInvalid }) => {
             {!isLogin && (
               <Input
                 label="Confirm Email Address"
-                onUpdateValue={(value) => setEnteredConfirmPassword(value)}
+                onUpdateValue={(value) => setEnteredConfirmEmail(value)}
                 value={enteredConfirmEmail}
                 keyboardType="email-address"
                 isInvalid={emailsDontMatch}
@@ -90,7 +90,7 @@ const AuthForm = ({ isLogin, credentialsInvalid }) => {
 
           <Pressable
             style={styles.submitButton}
-            onPress={isLogin ? () => handleSubmit("Login") : () => handleSubmit("Signup")}
+            onPress={submitHandler}
           >
             <Text style={styles.buttonText}>{isLogin ? "LOG IN" : "SIGN UP"}</Text>
           </Pressable>

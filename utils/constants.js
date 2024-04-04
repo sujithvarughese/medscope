@@ -1,14 +1,13 @@
-import { PROD_API, DEV_API } from '@env'
 
 const prod = {
   url: {
-    API_URL: PROD_API
+    API_URL: "https://exuberant-pear-stockings.cyclic.app/api/v1"
   }
 };
 
 const dev = {
   url: {
-    API_URL: DEV_API
+    API_URL: "http://localhost:8800/api/v1"
   }
 };
 

@@ -2,16 +2,9 @@ import { View, Text, TextInput, StyleSheet } from 'react-native';
 
 import { colors } from '../../utils/styles.js';
 
-function Input({
-  label,
-  keyboardType,
-  secure,
-  onUpdateValue,
-  value,
-  isInvalid,
-}) {
+const Input = ({ label, keyboardType, secure, onUpdateValue, value, isInvalid, }) => {
   return (
-    <View style={styles.inputContainer}>
+    <View style={styles.container}>
       <Text style={[styles.label, isInvalid && styles.labelInvalid]}>
         {label}
       </Text>
@@ -30,7 +23,7 @@ function Input({
 export default Input;
 
 const styles = StyleSheet.create({
-  inputContainer: {
+  container: {
     marginVertical: 8,
   },
   label: {
