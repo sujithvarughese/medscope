@@ -10,12 +10,6 @@ const Header = () => {
           <Text style={styles.text2}>Scope</Text>
         </View>
       </View>
-
-
-      {/*<View>
-        <Text style={styles.welcomeText}>Welcome!</Text>
-      </View>*/}
-
     </View>
   )
 }

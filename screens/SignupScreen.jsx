@@ -2,18 +2,23 @@ import AuthContent from '../components/auth/AuthContent'
 import { useState } from 'react'
 import connect from '../utils/connect'
 import LoadingOverlay from '../components/ui/LoadingOverlay'
+import { useAuthContext } from '../context/auth-context'
+import { Alert } from 'react-native'
 
 const SignupScreen = () => {
 
   const [isAuthenticating, setIsAuthenticating] = useState(false)
 
+  const { authenticateUser } = useAuthContext()
+
   const signupHandler = async ({ email, password }) => {
     try {
       setIsAuthenticating(true)
-      const response = await connect.post("auth/signup", { email, password })
-      console.log(response.data)
+      const response = await connect.post("auth", { email, password, mode: "signUp" })
+      const { token } = response.data
+      authenticateUser(token)
     } catch (error) {
-      throw new Error(error)
+      Alert.alert("Authentication failed")
     } finally {
       setIsAuthenticating(false)
     }
