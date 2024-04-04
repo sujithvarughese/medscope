@@ -1,30 +1,31 @@
 {
   "expo": {
-    "name": "medscope-client",
+    "name": "MedScope",
     "slug": "medscope",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/logo_nobg.png",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/logo_nobg.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff",
-      "length": "70px",
-      "height": "70px"
+      "backgroundColor": "#ffffff"
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
+      "buildNumber": "1.0.0",
       "supportsTablet": true,
       "bundleIdentifier": "com.sujithv.medscope"
     },
     "android": {
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.sujithv.medscope"
     },
     "web": {
       "favicon": "./assets/favicon.png"

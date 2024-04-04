@@ -4,7 +4,6 @@ import { AuthProvider, useAuthContext } from './context/auth-context'
 import PublicNavigator from './navigation/PublicNavigator'
 import { useEffect, useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import AppLoading from 'expo-app-loading'
 
 
 
@@ -23,10 +22,6 @@ const Navigation = () => {
     }
     fetchToken()
   }, [])
-
-  if (isAuthenticatingUser) {
-    return <AppLoading />
-  }
 
   return (
     <NavigationContainer>

@@ -10,14 +10,19 @@
     },
     "preview": {
       "channel": "preview",
+      "distribution": "internal",
       "ios": {
         "simulator": true
+      },
+      "android": {
+        "buildType": "apk"
       },
       "env": {
         "NODE_ENV": "production"
       }
     },
     "production": {
+      "credentialsSource": "local",
       "channel": "production",
       "env": {
         "NODE_ENV": "production"
