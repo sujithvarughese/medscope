@@ -31,7 +31,6 @@ const TreatmentScreen = () => {
 
 
   const fetchTreatmentPlan = async ({ age, sex, medicalConditions }) => {
-    console.log(medicalConditions)
     try {
       const response = await connect.post("conditions", { age, sex, medicalConditions })
       const { treatmentPlan } = response.data
@@ -44,6 +43,8 @@ const TreatmentScreen = () => {
   return (
     <View style={styles.container}>
 
+      <AgeSexSelector age={age} setAge={setAge} sex={sex} setSex={setSex}/>
+
       <SymptomSearchBar
         resetConditions={resetConditions}
         handleSubmit={handleSubmit}
@@ -51,11 +52,7 @@ const TreatmentScreen = () => {
         setSelectedConditions={setSelectedConditions}
       />
 
-      <AgeSexSelector age={age} setAge={setAge} sex={sex} setSex={setSex}/>
 
-      <Button>
-        <Text>Search</Text>
-      </Button>
 
     </View>
   )

@@ -126,3 +126,57 @@ const styles = StyleSheet.create({
 })
 
 export default TreatmentForm
+
+/*
+        <View style={styles.searchIcon}>
+          <FontAwesome5 name="search" size={16} color="red" />
+        </View>
+*  <TextInput
+          style={styles.searchBar}
+          value={searchQuery}
+          onChangeText={(query) => setSearchQuery(query)}
+          onSubmitEditing={submitCondition}
+          returnKeyType="search"
+          placeholder="Search e.g. heartburn"
+          dense={true}
+          clearButtonMode='always'
+          autoCapitalize="none"
+        >
+        </TextInput>
+      {searchQuery.length > 0 &&
+      <Picker
+        style={styles.picker}
+        onValueChange={(value) => submitCondition(value)}
+      >
+        {queryMatches.map((queryMatch, index) =>  <Picker.Item key={index} label={queryMatch} value={queryMatch} />)}
+      </Picker>}
+        const styles = StyleSheet.create({
+  container: {
+    alignItems: "center",
+    backgroundColor: "#FFFFFF",
+    padding: 24,
+  },
+  searchSection: {
+    justifyContent: "center",
+    alignItems: "flex-end"
+
+  },
+  searchBar: {
+    backgroundColor: "white",
+    borderColor: "#ccc",
+    borderWidth: 1,
+    borderRadius: 6,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    width: 280,
+  },
+  searchIcon: {
+    position: "absolute",
+    paddingHorizontal: 4,
+  },
+  picker: {
+    backgroundColor: "white",
+  }
+})
+
+* */

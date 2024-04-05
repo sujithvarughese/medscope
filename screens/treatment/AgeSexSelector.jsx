@@ -33,12 +33,12 @@ const AgeSexSelector = ({ age, setAge, sex, setSex }) => {
         <View style={styles.sexSelections}>
 
           <Pressable style={[styles.sexSelection, !!sex && styles.sexSelected]} onPress={() => setSex(true)}>
-            <Ionicons style={styles.sexIcon} name="male-outline" size={64} color="black" />
+            <Ionicons style={styles.sexIcon} name="male-outline" size={48} color="black" />
             <Text style={styles.sexText}>Male</Text>
           </Pressable>
 
           <Pressable style={[styles.sexSelection, !sex && styles.sexSelected]} onPress={() => setSex(false)}>
-            <Ionicons style={styles.sexIcon} name="female-outline" size={64} color="black" />
+            <Ionicons style={styles.sexIcon} name="female-outline" size={48} color="black" />
             <Text style={styles.sexText}>Female</Text>
           </Pressable>
 
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     backgroundColor: "#FFFFFF",
     width: 300,
-    height: 300,
+    height: 220,
 
   },
   ageContainer: {
@@ -67,11 +67,11 @@ const styles = StyleSheet.create({
 
   },
   heading: {
-    fontSize: 20,
+    fontSize: 16,
   },
   ageValue: {
     alignSelf: "center",
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "700"
 
   },
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
 
   },
   sexText: {
-    fontSize: 18,
+    fontSize: 16,
 
   }
 
