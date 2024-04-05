@@ -6,7 +6,7 @@ import RNPickerSelect from 'react-native-picker-select';
 import { Picker } from "@react-native-picker/picker"
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { FontAwesome5 } from '@expo/vector-icons';
-const TreatmentSearchBar = ({ selectedConditions, setSelectedConditions, resetConditions, handleSubmit }) => {
+const SymptomSearchBar = ({ selectedConditions, setSelectedConditions, resetConditions, handleSubmit }) => {
 
   const [isLoading, setIsLoading] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
@@ -38,23 +38,24 @@ const TreatmentSearchBar = ({ selectedConditions, setSelectedConditions, resetCo
     <View style={styles.container}>
 
       <View style={styles.searchSection}>
-        <TouchableOpacity onPress={resetConditions}><MaterialCommunityIcons name="restart" size={32} color="black" /></TouchableOpacity>
         <TextInput
-          style={styles.searchBox}
+          style={styles.searchBar}
           value={searchQuery}
           onChangeText={(query) => setSearchQuery(query)}
           onSubmitEditing={submitCondition}
           returnKeyType="search"
-          placeholder="Search health conditions"
+          placeholder="Search e.g. heartburn"
           dense={true}
           clearButtonMode='always'
           autoCapitalize="none"
         >
         </TextInput>
-        <TouchableOpacity onPress={handleSubmit}><FontAwesome5 name="search" size={24} color="black" /></TouchableOpacity>
+        <View style={styles.searchIcon}>
+          <FontAwesome5 name="search" size={16} color="red" />
+        </View>
       </View>
 
-      <Text>{}</Text>
+
 
       {searchQuery.length > 0 &&
       <Picker
@@ -70,15 +71,16 @@ const TreatmentSearchBar = ({ selectedConditions, setSelectedConditions, resetCo
 
 const styles = StyleSheet.create({
   container: {
-
+    alignItems: "center",
+    backgroundColor: "#FFFFFF",
+    padding: 24,
   },
   searchSection: {
-    flexDirection: "row",
     justifyContent: "center",
-    alignItems: "center",
-    gap: 4,
+    alignItems: "flex-end"
+
   },
-  searchBox: {
+  searchBar: {
     backgroundColor: "white",
     borderColor: "#ccc",
     borderWidth: 1,
@@ -86,12 +88,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 6,
     width: 280,
-    alignSelf: "center"
-
+  },
+  searchIcon: {
+    position: "absolute",
+    paddingHorizontal: 4,
   },
   picker: {
     backgroundColor: "white",
   }
 })
 
-export default TreatmentSearchBar
+export default SymptomSearchBar

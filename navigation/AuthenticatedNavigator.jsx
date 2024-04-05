@@ -29,9 +29,9 @@ const AuthenticatedNavigator = () => {
         name="drugs"
         component={DrugResearchScreen}
         options={{
-          tabBarLabel: "Drug Research",
+          tabBarLabel: "Drugs",
           tabBarIcon: () => <FontAwesome6 name="prescription-bottle-medical" size={24} color="black" />,
-          headerTitle: ""
+          headerTitle: "Drug Research"
         }}
       />
       <Tab.Screen
@@ -40,7 +40,7 @@ const AuthenticatedNavigator = () => {
         options={{
           tabBarLabel: "Treatment",
           tabBarIcon: () => <Fontisto name="doctor" size={24} color="black" />,
-          headerTitle: ""
+          headerTitle: "Symptom Checker"
         }}
       />
     </Tab.Navigator>

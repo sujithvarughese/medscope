@@ -22,7 +22,6 @@
       }
     },
     "production": {
-      "credentialsSource": "local",
       "channel": "production",
       "env": {
         "NODE_ENV": "production"

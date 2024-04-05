@@ -5,10 +5,30 @@ import { useState } from 'react'
 import axios from 'axios'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import connect from '../utils/connect'
+import AgeSexSelector from './treatment/AgeSexSelector'
+import SymptomSearchBar from './treatment/SymptomSearchBar'
+import Button from '../components/ui/Button'
 
 const TreatmentScreen = () => {
 
   const [treatment, setTreatment] = useState([])
+
+  const [age, setAge] = useState("18")
+  const [sex, setSex] = useState(false)
+  const [selectedConditions, setSelectedConditions] = useState([])
+
+  const removeSelectedCondition = (conditionToRemove) => {
+    const updatedSelectedConditions = selectedConditions.filter(condition => condition !== conditionToRemove)
+    setSelectedConditions(updatedSelectedConditions)
+  }
+  const resetConditions = () => {
+    setSelectedConditions([])
+  }
+  const handleSubmit = () => {
+    const selectedSex = sex === true ? "female" : "male"
+    fetchTreatmentPlan({ age, sex: selectedSex, medicalConditions: selectedConditions })
+  }
+
 
   const fetchTreatmentPlan = async ({ age, sex, medicalConditions }) => {
     console.log(medicalConditions)
@@ -22,24 +42,34 @@ const TreatmentScreen = () => {
   }
 
   return (
-    <ScrollView style={styles.container}>
-      <TreatmentForm style={styles.treatmentForm} fetchTreatmentPlan={fetchTreatmentPlan}/>
-      {treatment.length > 0 &&
-      <TreatmentPlan style={styles.treatmentPlan} treatment={treatment}/>}
-    </ScrollView>
+    <View style={styles.container}>
+
+      <SymptomSearchBar
+        resetConditions={resetConditions}
+        handleSubmit={handleSubmit}
+        selectedConditions={selectedConditions}
+        setSelectedConditions={setSelectedConditions}
+      />
+
+      <AgeSexSelector age={age} setAge={setAge} sex={sex} setSex={setSex}/>
+
+      <Button>
+        <Text>Search</Text>
+      </Button>
+
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    margin: 24,
+    alignItems: "center",
+    gap: 24
+
 
   },
-  treatmentForm: {
-
-  },
-  treatmentPlan: {
-
-  }
 })
 
 export default TreatmentScreen

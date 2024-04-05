@@ -7,6 +7,7 @@ import connect from '../utils/connect'
 import DrugsSearchBar from './drug-research/DrugsSearchBar'
 import DrugInformation from './drug-research/DrugInformation'
 import { FontAwesome6 } from '@expo/vector-icons';
+import { colors } from '../utils/styles'
 
 const DrugResearchScreen = () => {
 
@@ -26,7 +27,6 @@ const DrugResearchScreen = () => {
     <View style={styles.container}>
 
       <View style={styles.searchSection}>
-        <Text style={styles.headingText}>Drug Search</Text>
         <DrugsSearchBar style={styles.search} fetchDrugInformation={fetchDrugInformation} />
       </View>
 
@@ -49,10 +49,10 @@ const styles = StyleSheet.create({
   },
   searchSection: {
     gap: 8,
+    margin: 25,
     padding: 25,
-    backgroundColor: "dodgerblue",
-    borderBottomLeftRadius: 10,
-    borderBottomRightRadius: 10,
+    backgroundColor: colors.color,
+    borderRadius: 8,
   },
   headingText: {
     textAlign: "center",

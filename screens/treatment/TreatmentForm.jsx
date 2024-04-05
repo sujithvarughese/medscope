@@ -2,7 +2,7 @@ import { Button, FlatList, StyleSheet, Switch, Text, TextInput, TouchableOpacity
 import { useEffect, useState } from 'react'
 import { medicalConditionsList } from '../../data/medicalConditions.js'
 import Slider from '@react-native-community/slider'
-import TreatmentSearchBar from './TreatmentSearchBar'
+import SymptomSearchBar from './SymptomSearchBar'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
@@ -29,7 +29,6 @@ const TreatmentForm = ({ fetchTreatmentPlan }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.headingText}>Find Treatment</Text>
       <View style={styles.ageSexGroup}>
         <View style={styles.ageGroup}>
           <Text>Age: </Text>
@@ -54,7 +53,7 @@ const TreatmentForm = ({ fetchTreatmentPlan }) => {
       </View>
 
       <View>
-        <TreatmentSearchBar
+        <SymptomSearchBar
           resetConditions={resetConditions}
           handleSubmit={handleSubmit}
           selectedConditions={selectedConditions}

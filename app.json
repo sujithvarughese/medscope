@@ -36,11 +36,9 @@
       }
     },
     "owner": "sujithv",
-    "runtimeVersion": {
-      "policy": "appVersion"
-    },
     "updates": {
       "url": "https://u.expo.dev/c99bd0c6-f7fb-47a2-b2b7-d634f0e9ebb5"
-    }
+    },
+    "runtimeVersion": "1.0.0"
   }
 }
