@@ -18,10 +18,18 @@ const SymptomSearchBar = ({ selectedConditions, setSelectedConditions, resetCond
   const [isChecked, setChecked] = useState(false);
   const [selected, setSelected] = useState([])
 
-  const submitCondition = (condition) => {
-    console.log(condition)
-    setSelectedConditions(prev => [...prev, condition])
-    setSearchQuery("")
+
+  const toggleItemSelect = (item) => {
+    if (selectedConditions.length >= 5 && !selectedConditions.includes(item)) {
+      console.log("5 conditions max")
+      return
+    }
+    if (!selectedConditions.includes(item)) {
+      setSelectedConditions(prev => [...prev, item])
+    } else {
+      const updatedSelectedConditions = selectedConditions.filter(condition => condition !== item)
+      setSelectedConditions(updatedSelectedConditions)
+    }
   }
 
   useEffect(() => {
@@ -49,7 +57,6 @@ const SymptomSearchBar = ({ selectedConditions, setSelectedConditions, resetCond
           style={styles.searchBar}
           value={searchQuery}
           onChangeText={(query) => setSearchQuery(query)}
-          onSubmitEditing={submitCondition}
           returnKeyType="search"
           placeholder="Search e.g. heartburn"
           dense={true}
@@ -75,24 +82,26 @@ const SymptomSearchBar = ({ selectedConditions, setSelectedConditions, resetCond
 
               <Pressable
                 style={styles.symptomItem}
-                onPress={(item) => submitCondition(item)}
+                onPress={() => toggleItemSelect(item)}
               >
-                <Text>{item}</Text>
+                <Text style={styles.symptomItemText} numberOfLines={1}>{item}</Text>
                 {selectedConditions.includes(item) &&
-
-                    <Pressable
-                      style={styles.checked}
-                      onPress={() => setChecked(!checked)}>
-                      <Ionicons name="checkmark" size={24} color="red" />
-                    </Pressable>
-
-
-                }
+                <Ionicons name="checkmark" size={20} color="red" />}
               </Pressable>
-
           }
         />
       }
+
+      <View style={styles.selectedSymptomList}>
+        {selectedConditions.map(item =>
+        <View style={styles.selectedSymptomItem}>
+          <Text style={styles.selectedSymptomText} numberOfLines={1}>{item}</Text>
+          <Pressable onPress={() => toggleItemSelect(item)}>
+            <Ionicons name="remove-circle-sharp" size={20} color="red" />
+          </Pressable>
+
+        </View>)}
+      </View>
 
     </View>
   )
@@ -107,10 +116,7 @@ const styles = StyleSheet.create({
   },
   searchSection: {
     flexDirection: "row",
-
     gap: 8
-
-
   },
   searchBar: {
     backgroundColor: "white",
@@ -131,6 +137,23 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   symptomItem: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  symptomItemText: {
+    fontSize: 20,
+    maxWidth: "90%"
+  },
+  selectedSymptomList: {
+    width: "95%",
+  },
+  selectedSymptomItem: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  selectedSymptomText: {
 
   },
   checked: {

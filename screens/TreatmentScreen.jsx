@@ -25,6 +25,7 @@ const TreatmentScreen = () => {
     setSelectedConditions([])
   }
   const handleSubmit = () => {
+    console.log(selectedConditions)
     const selectedSex = sex === true ? "female" : "male"
     fetchTreatmentPlan({ age, sex: selectedSex, medicalConditions: selectedConditions })
   }

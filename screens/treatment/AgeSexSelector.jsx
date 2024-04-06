@@ -1,14 +1,9 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { Slider } from '@miblanchard/react-native-slider';
 import { Ionicons } from '@expo/vector-icons';
-import Button from '../../components/ui/Button'
-import { useEffect } from 'react'
 import { colors } from '../../utils/styles'
 const AgeSexSelector = ({ age, setAge, sex, setSex }) => {
 
-  useEffect(() => {
-    console.log(sex)
-  }, [sex])
 
   return (
     <View style={styles.container}>
