@@ -1,8 +1,9 @@
-import { StyleSheet, TextInput, TouchableOpacity, View } from 'react-native'
+import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { useEffect, useState } from 'react'
 import { drugListData } from '../../data/drugList.js'
 import { Picker } from "@react-native-picker/picker"
 import { FontAwesome5 } from '@expo/vector-icons';
+import Button from '../../components/ui/Button'
 const DrugsSearchBar = ({ fetchDrugInformation }) => {
 
   const [isLoading, setIsLoading] = useState(false)
@@ -32,18 +33,37 @@ const DrugsSearchBar = ({ fetchDrugInformation }) => {
   return (
     <View style={styles.container}>
 
-      <TextInput
-        style={styles.searchBox}
-        value={searchQuery}
-        onChangeText={(query) => setSearchQuery(query)}
-        onSubmitEditing={(value) => handleSubmit(value)}
-        returnKeyType="search"
-        placeholder="Search ingredients or drug brand name"
-        dense={true}
-        clearButtonMode='always'
-        autoCapitalize="none"
-      >
-      </TextInput>
+      <Text style={styles.searchHeading}>Search brand name or drug ingredient</Text>
+      <View style={styles.searchSection}>
+        <TextInput
+          style={styles.searchBar}
+          value={searchQuery}
+          onChangeText={(query) => setSearchQuery(query)}
+          onSubmitEditing={(value) => handleSubmit(value)}
+          returnKeyType="search"
+          placeholder="Search ingredients or drug brand name"
+          dense={true}
+          clearButtonMode='always'
+          autoCapitalize="none"
+        >
+        </TextInput>
+        <Button>
+          <Text>Search</Text>
+        </Button>
+      </View>
+
+
+      {searchQuery.length > 0 &&
+      <FlatList
+        style={styles.drugList}
+        data={queryMatches}
+        keyExtractor={item => item}
+        renderItem={({item}) =>
+          <View style={styles.drugItem}>
+            <Text style={styles.drugItemText}>{item}</Text>
+          </View>
+      }
+      />}
 
 
       {searchQuery.length > 0 &&
@@ -61,20 +81,38 @@ const DrugsSearchBar = ({ fetchDrugInformation }) => {
 
 const styles = StyleSheet.create({
   container: {
-
+    alignItems: "center",
+    backgroundColor: "#FFFFFF",
+    padding: 24,
+    width: 300,
   },
-  searchBox: {
+  searchSection: {
+    flexDirection: "row",
+    gap: 8
+  },
+  searchHeading: {
+    fontSize: 16
+  },
+  searchBar: {
     backgroundColor: "white",
     borderColor: "#ccc",
     borderWidth: 1,
     borderRadius: 6,
     paddingHorizontal: 12,
     paddingVertical: 6,
-    width: 280,
-    alignSelf: "center"
+    width: 180,
+  },
+  drugList: {
+    backgroundColor: "white",
+  },
+  drugItem: {
+
+  },
+  drugItemText: {
+    fontSize: 20,
   },
   picker: {
-    backgroundColor: "white",
+
   },
   pickerItem: {
 

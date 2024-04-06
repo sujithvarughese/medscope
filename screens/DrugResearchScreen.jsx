@@ -26,9 +26,9 @@ const DrugResearchScreen = () => {
   return (
     <View style={styles.container}>
 
-      <View style={styles.searchSection}>
-        <DrugsSearchBar style={styles.search} fetchDrugInformation={fetchDrugInformation} />
-      </View>
+
+      <DrugsSearchBar style={styles.search} fetchDrugInformation={fetchDrugInformation} />
+
 
       {drugInformation !== null &&
         <DrugInformation
@@ -45,7 +45,10 @@ const DrugResearchScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-
+    flex: 1,
+    margin: 24,
+    alignItems: "center",
+    gap: 24
   },
   searchSection: {
     gap: 8,

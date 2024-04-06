@@ -53,6 +53,9 @@ const TreatmentScreen = () => {
         setSelectedConditions={setSelectedConditions}
       />
 
+      <Button onPress={handleSubmit}>
+        <Text>Search</Text>
+      </Button>
 
 
     </View>

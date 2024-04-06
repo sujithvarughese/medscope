@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     backgroundColor: "#FFFFFF",
     width: 300,
-    height: 220,
+    height: 190,
 
   },
   ageContainer: {
