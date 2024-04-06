@@ -2,18 +2,21 @@ import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { Slider } from '@miblanchard/react-native-slider';
 import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../../utils/styles'
-const AgeSexSelector = ({ age, setAge, sex, setSex }) => {
+import { useSymptomContext } from '../../context/symptom-context'
+const AgeSexSelectorScreen = () => {
 
+  const { age, setAge, sex, setSex } = useSymptomContext()
+  console.log(age)
 
   return (
     <View style={styles.container}>
 
       <View style={styles.ageContainer}>
         <Text style={styles.heading}>Enter your Age</Text>
-        <Text style={styles.ageValue}>{age}</Text>
+        <Text style={styles.ageValue}></Text>
         <View style={styles.ageSlider}>
           <Slider
-            value={age}
+            value="18"
             onValueChange={(value) => setAge(value)}
             minimumValue={18}
             maximumValue={120}
@@ -38,21 +41,21 @@ const AgeSexSelector = ({ age, setAge, sex, setSex }) => {
           </Pressable>
 
         </View>
-
-
       </View>
+
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
     justifyContent: "space-around",
     backgroundColor: "#FFFFFF",
-    width: 300,
-    height: 190,
 
+    flex: 1,
+    margin: 24,
+    alignItems: "center",
+    gap: 24
   },
   ageContainer: {
 
@@ -91,4 +94,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default AgeSexSelector
+export default AgeSexSelectorScreen

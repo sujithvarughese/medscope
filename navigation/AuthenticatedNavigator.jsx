@@ -7,6 +7,10 @@ import { FontAwesome6 } from '@expo/vector-icons';
 import { useAuthContext } from '../context/auth-context'
 import IconButton from '../components/ui/IconButton'
 import DrugResearchScreen from '../screens/DrugResearchScreen'
+import SymptomCheckerStack from './stacks/SymptomCheckerStack'
+import SymptomResultsScreen from '../screens/symptom-checker/SymptomResultsScreen'
+import AgeSexSelectorScreen from '../screens/symptom-checker/AgeSexSelectorScreen'
+
 
 const Tab = createBottomTabNavigator()
 const AuthenticatedNavigator = () => {
@@ -36,9 +40,9 @@ const AuthenticatedNavigator = () => {
       />
       <Tab.Screen
         name="treatment"
-        component={TreatmentScreen}
+        component={AgeSexSelectorScreen}
         options={{
-          tabBarLabel: "Treatment",
+          tabBarLabel: "Symptom Checker",
           tabBarIcon: () => <Fontisto name="doctor" size={24} color="black" />,
           headerTitle: "Symptom Checker"
         }}

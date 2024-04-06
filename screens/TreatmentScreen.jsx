@@ -1,12 +1,12 @@
 import { View, StyleSheet, Text, ScrollView } from 'react-native'
-import TreatmentForm from './treatment/TreatmentForm'
-import TreatmentPlan from './treatment/TreatmentPlan'
+import TreatmentForm from './symptom-checker/TreatmentForm'
+import TreatmentPlan from './symptom-checker/TreatmentPlan'
 import { useState } from 'react'
 import axios from 'axios'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import connect from '../utils/connect'
-import AgeSexSelector from './treatment/AgeSexSelector'
-import SymptomSearchBar from './treatment/SymptomSearchBar'
+import AgeSexSelectorScreen from './symptom-checker/AgeSexSelectorScreen'
+import SymptomSearchBar from './symptom-checker/SymptomSearchBar'
 import Button from '../components/ui/Button'
 
 const TreatmentScreen = () => {
@@ -44,7 +44,7 @@ const TreatmentScreen = () => {
   return (
     <View style={styles.container}>
 
-      <AgeSexSelector age={age} setAge={setAge} sex={sex} setSex={setSex}/>
+      <AgeSexSelectorScreen age={age} setAge={setAge} sex={sex} setSex={setSex}/>
 
       <SymptomSearchBar
         resetConditions={resetConditions}
