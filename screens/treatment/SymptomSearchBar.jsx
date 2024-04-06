@@ -41,7 +41,7 @@ const SymptomSearchBar = ({ selectedConditions, setSelectedConditions, resetCond
       // filter workouts based on user-entered query once user has entered 3 letters
       if (searchQuery.length > 2) {
         const filteredConditions = medicalConditionsList.filter(condition => {
-          return (condition.toLowerCase().includes(searchQuery.toLowerCase()) && !selectedConditions.includes(condition))
+          return condition.toLowerCase().includes(searchQuery.toLowerCase())
         })
         // loadOptions enables immediate filtering on input change with callback function passing in filtered results
         setQueryMatches(filteredConditions)
@@ -68,7 +68,7 @@ const SymptomSearchBar = ({ selectedConditions, setSelectedConditions, resetCond
           <FontAwesome5 name="search" size={16} color="red" />
         </View>*/}
 
-        <Button>
+        <Button onPress={handleSubmit}>
           <Text>Search</Text>
         </Button>
       </View>
