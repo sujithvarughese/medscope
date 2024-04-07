@@ -1,6 +1,10 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native'
 
-const DrugInformation = ({ name, use, precautions, sideEffects }) => {
+const DrugResultsScreen = ({ route }) => {
+
+  const { name, use, precautions, sideEffects } = route.params
+  console.log(route)
+
   return (
     <View style={styles.container}>
 
@@ -59,4 +63,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default DrugInformation
+export default DrugResultsScreen

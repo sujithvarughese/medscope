@@ -1,8 +1,8 @@
 import { View, Text, StyleSheet, ScrollView } from 'react-native'
-import NewsSection from './home/news/NewsSection'
+import NewsSection from './news/NewsSection'
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context'
-import Header from '../components/Header'
-import HealthTips from './home/healthTips/HealthTips'
+import Header from '../../components/Header'
+import HealthTips from './healthTips/HealthTips'
 
 const HomeScreen = () => {
   return (

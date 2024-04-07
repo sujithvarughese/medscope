@@ -1,12 +1,12 @@
 import { Alert, Image, ImageBackground, Pressable, StyleSheet, Text, View } from 'react-native'
 import { useState } from "react"
 import { useNavigation } from "@react-navigation/native"
-import logo from "../assets/logo_nobg.png"
-import welcomeImage from "../assets/welcome.jpeg"
-import { colors } from '../utils/styles'
-import connect from '../utils/connect'
-import { useAuthContext } from '../context/auth-context'
-import LoadingOverlay from '../components/ui/LoadingOverlay'
+import logo from "../../assets/logo_nobg.png"
+import welcomeImage from "../../assets/welcome.jpeg"
+import { colors } from '../../utils/styles'
+import connect from '../../utils/connect'
+import { useAuthContext } from '../../context/auth-context'
+import LoadingOverlay from '../../components/ui/LoadingOverlay'
 
 const WelcomeScreen = () => {
 

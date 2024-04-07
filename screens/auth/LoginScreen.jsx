@@ -1,8 +1,8 @@
 import { useState } from "react"
-import AuthContent from '../components/auth/AuthContent'
-import connect from '../utils/connect'
-import LoadingOverlay from '../components/ui/LoadingOverlay'
-import { useAuthContext } from '../context/auth-context'
+import AuthContent from '../../components/auth/AuthContent'
+import connect from '../../utils/connect'
+import LoadingOverlay from '../../components/ui/LoadingOverlay'
+import { useAuthContext } from '../../context/auth-context'
 import { Alert } from 'react-native'
 
 const LoginScreen = () => {
