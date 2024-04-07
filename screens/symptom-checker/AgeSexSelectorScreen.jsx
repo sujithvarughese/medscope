@@ -3,21 +3,21 @@ import { Slider } from '@miblanchard/react-native-slider';
 import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../../utils/styles'
 import { useSymptomContext } from '../../context/symptom-context'
-const AgeSexSelectorScreen = () => {
+import Button from '../../components/ui/Button'
+const AgeSexSelectorScreen = ({ navigation }) => {
 
   const { age, setAge, sex, setSex } = useSymptomContext()
-  console.log(age)
 
   return (
     <View style={styles.container}>
 
       <View style={styles.ageContainer}>
         <Text style={styles.heading}>Enter your Age</Text>
-        <Text style={styles.ageValue}></Text>
+        <Text style={styles.ageValue}>{age}</Text>
         <View style={styles.ageSlider}>
           <Slider
-            value="18"
-            onValueChange={(value) => setAge(value)}
+            value={age}
+            onValueChange={(value) =>{setAge(value)}}
             minimumValue={18}
             maximumValue={120}
             step={1}
@@ -39,23 +39,26 @@ const AgeSexSelectorScreen = () => {
             <Ionicons style={styles.sexIcon} name="female-outline" size={48} color="black" />
             <Text style={styles.sexText}>Female</Text>
           </Pressable>
-
         </View>
-      </View>
 
+        <View>
+          <Button onPress={() => navigation.navigate("Lookup")}><Text>Select Symptoms</Text></Button>
+        </View>
+
+
+      </View>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
+    alignItems: "center",
     justifyContent: "space-around",
     backgroundColor: "#FFFFFF",
+    width: 300,
+    height: 190,
 
-    flex: 1,
-    margin: 24,
-    alignItems: "center",
-    gap: 24
   },
   ageContainer: {
 

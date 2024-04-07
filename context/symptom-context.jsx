@@ -1,70 +1,68 @@
-import { createContext, useContext, useReducer, useState } from 'react'
-import AsyncStorage from "@react-native-async-storage/async-storage"
+import { createContext, useContext, useReducer } from 'react'
+import symptomReducer from './symptom-reducer'
 import connect from '../utils/connect'
+
+
+
 
 const SymptomContext = createContext()
 
 const initialState = {
-  age: "18",
-  sex: "male",
-  selectedConditions: [],
+  age: "",
+  sex: false,
+  selectedSymptoms: [],
   treatmentPlan: [],
-}
-
-const reducer = (state, action) => {
-  if (action.type === "SET_AGE") {
-    return { ...state, age: action.payload.age }
-  }
-  if (action.type === "SET_SEX") {
-    return { ...state, age: action.payload.sex }
-  }
-  if (action.type === "SET_SELECTED_CONDITIONS") {
-    return { ...state, age: action.payload.selectedConditions }
-  }
 }
 
 const SymptomProvider = ({ children }) => {
 
-  const [state, dispatch] = useReducer(reducer, initialState)
-  console.log(state)
+  const [state, dispatch] = useReducer(symptomReducer, initialState)
 
   const setAge = (age) => dispatch({ type: "SET_AGE", payload: { age }})
+  const setSex = () => dispatch({ type: "SET_SEX" })
 
-  const setSex = (sex) => dispatch({ type: "SET_SEX", payload: { sex }})
-
-  const addSymptom = (symptom) => dispatch({ type: "ADD_SYMPTOM", payload: { selectedConditions }})
-  const removeSymptom = (symptom) => dispatch({ type: "REMOVE_SYMPTOM", payload: { selectedConditions }})
-
-/*
-  const setTreatmentPlan = () => {}
-  const removeSelectedCondition = (conditionToRemove) => {
-    const updatedSelectedConditions = state.selectedConditions.filter(condition => condition !== conditionToRemove)
-    setSelectedConditions(updatedSelectedConditions)
-  }
-  const resetConditions = () => {
-    setSelectedConditions([])
+  const toggleSymptomSelect = (symptom) => {
+    if (state.selectedSymptoms.length >= 5 && !state.selectedSymptoms.includes(symptom)) {
+      console.log("5 conditions max")
+      return
+    }
+    if (!state.selectedSymptoms.includes(symptom)) {
+      dispatch({ type: "ADD_SYMPTOM", payload: { symptom }})
+    } else {
+      dispatch({ type: "REMOVE_SYMPTOM", payload: { symptom }})
+    }
   }
 
-  const fetchTreatmentPlan = async ({ age, sex, medicalConditions }) => {
+  const resetSymptoms = () => {
+    dispatch({ type: "RESET_SYMPTOMS" })
+  }
+
+  const fetchTreatmentPlan = async () => {
     try {
-      const response = await connect.post("conditions", { age, sex, medicalConditions })
+      const response = await connect.post("conditions", { age: state.age, sex: state.sex, medicalConditions: state.selectedSymptoms })
       const { treatmentPlan } = response.data
-      setTreatment(treatmentPlan)
+      dispatch({ type: "SET_TREATMENT_PLAN", payload: { treatmentPlan }})
     } catch (error) {
       throw new Error(error)
     }
-  }*/
-  return <SymptomContext.Provider value={
+  }
+
+  return (
+    <SymptomContext.Provider value={
     {
       ...state,
       setAge,
       setSex,
+      toggleSymptomSelect,
+      resetSymptoms,
+      fetchTreatmentPlan
     }
   }>
     {children}
   </SymptomContext.Provider>
+  )
 }
 
-const useSymptomContext = () => useContext(SymptomContext)
+export const useSymptomContext = () => useContext(SymptomContext)
 
-export { SymptomProvider, useSymptomContext }
+export default SymptomProvider

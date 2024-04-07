@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import HomeScreen from '../screens/HomeScreen'
-import TreatmentScreen from '../screens/TreatmentScreen'
+
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Fontisto } from '@expo/vector-icons';
 import { FontAwesome6 } from '@expo/vector-icons';
@@ -8,8 +8,7 @@ import { useAuthContext } from '../context/auth-context'
 import IconButton from '../components/ui/IconButton'
 import DrugResearchScreen from '../screens/DrugResearchScreen'
 import SymptomCheckerStack from './stacks/SymptomCheckerStack'
-import SymptomResultsScreen from '../screens/symptom-checker/SymptomResultsScreen'
-import AgeSexSelectorScreen from '../screens/symptom-checker/AgeSexSelectorScreen'
+
 
 
 const Tab = createBottomTabNavigator()
@@ -38,9 +37,10 @@ const AuthenticatedNavigator = () => {
           headerTitle: "Drug Research"
         }}
       />
+
       <Tab.Screen
         name="treatment"
-        component={AgeSexSelectorScreen}
+        component={SymptomCheckerStack}
         options={{
           tabBarLabel: "Symptom Checker",
           tabBarIcon: () => <Fontisto name="doctor" size={24} color="black" />,

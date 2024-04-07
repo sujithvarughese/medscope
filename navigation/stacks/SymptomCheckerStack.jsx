@@ -2,9 +2,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import AgeSexSelectorScreen from '../../screens/symptom-checker/AgeSexSelectorScreen'
 import SymptomLookupScreen from '../../screens/symptom-checker/SymptomLookupScreen'
 import SymptomResultsScreen from '../../screens/symptom-checker/SymptomResultsScreen'
-import { SymptomProvider } from '../../context/symptom-context'
+import SymptomProvider from '../../context/symptom-context'
 
 const Stack = createNativeStackNavigator()
+
+
 const SymptomCheckerStack = () => {
 
   return (
