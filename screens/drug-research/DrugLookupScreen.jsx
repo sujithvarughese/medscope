@@ -60,7 +60,7 @@ const DrugLookupScreen = ({ navigation }) => {
                 onChangeText={(query) => setSearchQuery(query)}
                 onSubmitEditing={(value) => handleSubmit(value)}
                 returnKeyType="search"
-                placeholder="Search ingredients or drug brand name"
+                placeholder="Search e.g. Tylenol"
                 dense={true}
                 clearButtonMode='always'
                 autoCapitalize="none"
