@@ -8,7 +8,7 @@ import connect from '../utils/connect'
 const SymptomContext = createContext()
 
 const initialState = {
-  age: "",
+  age: "18",
   sex: false,
   selectedSymptoms: [],
   treatmentPlan: [],

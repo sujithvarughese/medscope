@@ -38,71 +38,76 @@ const SymptomLookupScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.content}>
 
-      <Text>Search by symptom</Text>
-
-      <View style={styles.searchSection}>
-        <View style={styles.searchBar}>
-          <TextInput
-            value={searchQuery}
-            onChangeText={(query) => setSearchQuery(query)}
-            returnKeyType="search"
-            placeholder="Search e.g. heartburn"
-            dense={true}
-            clearButtonMode='always'
-            autoCapitalize="none"
-          >
-          </TextInput>
-          <View style={styles.searchIcon}>
-            <FontAwesome5 name="search" size={16} color="red" />
+        <View style={styles.searchSection}>
+          <View style={styles.searchBar}>
+            <TextInput
+              value={searchQuery}
+              onChangeText={(query) => setSearchQuery(query)}
+              returnKeyType="search"
+              placeholder="Search e.g. heartburn"
+              dense={true}
+              clearButtonMode='always'
+              autoCapitalize="none"
+            >
+            </TextInput>
+            <View style={styles.searchIcon}>
+              <FontAwesome5 name="search" size={16} color="red" />
+            </View>
           </View>
         </View>
-      </View>
 
-      <FlatList
-        style={styles.symptomList}
-        data={queryMatches}
-        keyExtractor={item => item}
-        renderItem={({item}) =>
+        <View style={styles.selectedSymptomList}>
+          {selectedSymptoms.map(item =>
+            <View style={styles.selectedSymptomItem}>
+              <Text style={styles.selectedSymptomText} numberOfLines={1}>{item}</Text>
+              <Pressable onPress={() => toggleSymptomSelect(item)}>
+                <Ionicons name="remove-circle-sharp" size={20} color="red" />
+              </Pressable>
 
-          <Pressable
-            style={styles.symptomItem}
-            onPress={() => toggleSymptomSelect(item)}
-          >
-            <Text style={styles.symptomItemText} numberOfLines={1}>{item}</Text>
-            {selectedSymptoms.includes(item) &&
-              <Ionicons name="checkmark" size={20} color="red" />}
-          </Pressable>
-        }
-      />
+            </View>)}
+        </View>
 
-      <View style={styles.selectedSymptomList}>
-        {selectedSymptoms.map(item =>
-          <View style={styles.selectedSymptomItem}>
-            <Text style={styles.selectedSymptomText} numberOfLines={1}>{item}</Text>
-            <Pressable onPress={() => toggleSymptomSelect(item)}>
-              <Ionicons name="remove-circle-sharp" size={20} color="red" />
+        <FlatList
+          style={styles.symptomList}
+          data={queryMatches}
+          keyExtractor={item => item}
+          renderItem={({item}) =>
+
+            <Pressable
+              style={styles.symptomItem}
+              onPress={() => toggleSymptomSelect(item)}
+            >
+              <Text style={styles.symptomItemText} numberOfLines={1}>{item}</Text>
+              {selectedSymptoms.includes(item) &&
+                <Ionicons name="checkmark" size={20} color="red" />}
             </Pressable>
+          }
+        />
 
-          </View>)}
+        <View>
+          <Button onPress={handleSubmit}><Text>Search</Text></Button>
+        </View>
+
       </View>
-
-      <View>
-        <Button onPress={handleSubmit}><Text>Search</Text></Button>
-      </View>
-
-
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     alignItems: "center",
+    justifyContent: "center",
+  },
+  content: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
     backgroundColor: "#FFFFFF",
-    padding: 24,
-    width: 300,
-    height: 350,
+    width: "100%",
+    padding: 12
   },
   searchSection: {
     flexDirection: "row",
@@ -115,38 +120,18 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     paddingHorizontal: 12,
     paddingVertical: 6,
-    width: 180,
+    width: 280,
     justifyContent: "center",
     margin: 12,
+    height: 42,
   },
   searchIcon: {
     position: "absolute",
     paddingHorizontal: 6,
     alignSelf: "flex-end",
   },
-  symptomListContainer: {
-
-  },
-  symptomList: {
-    backgroundColor: colors.colorLight,
-    width: "100%",
-
-  },
-  symptomItem: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingHorizontal: 8,
-    paddingVertical: 6,
-    borderBottomColor: "gray",
-    borderBottomWidth: 1
-  },
-  symptomItemText: {
-    fontSize: 20,
-    maxWidth: "90%"
-  },
   selectedSymptomList: {
-    width: "95%",
+    width: 300,
   },
   selectedSymptomItem: {
     flexDirection: "row",
@@ -156,8 +141,21 @@ const styles = StyleSheet.create({
   selectedSymptomText: {
 
   },
-  checked: {
-
+  symptomList: {
+    marginVertical: 16,
+  },
+  symptomItem: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: 8,
+    paddingVertical: 8,
+    borderBottomColor: "#E8E8E8",
+    borderBottomWidth: 1
+  },
+  symptomItemText: {
+    fontSize: 20,
+    maxWidth: "90%"
   }
 })
 export default SymptomLookupScreen

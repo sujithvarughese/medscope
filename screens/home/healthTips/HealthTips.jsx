@@ -32,8 +32,19 @@ const HealthTips = () => {
 
 const styles = StyleSheet.create({
   container: {
+    margin: 4,
     gap: 6,
-    padding: 6
+    backgroundColor: "white",
+    padding: 6,
+    elevation: 8,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    borderRadius: 10,
   },
   heading: {
     fontSize: 16,

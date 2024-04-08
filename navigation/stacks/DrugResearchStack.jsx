@@ -11,8 +11,20 @@ const DrugResearchStack = () => {
   return (
 
       <Stack.Navigator initialRouteName="Lookup">
-        <Stack.Screen name="Lookup" component={DrugLookupScreen} />
-        <Stack.Screen name="DrugInfo" component={DrugResultsScreen} />
+        <Stack.Screen
+          name="Lookup"
+          component={DrugLookupScreen}
+          options={{
+            headerTitle: "Search"
+          }}
+        />
+        <Stack.Screen
+          name="DrugInfo"
+          component={DrugResultsScreen}
+          options={{
+            headerTitle: ""
+          }}
+        />
       </Stack.Navigator>
 
 

@@ -3,7 +3,6 @@ import { FlatList, StyleSheet, Text, View } from 'react-native'
 const DrugResultsScreen = ({ route }) => {
 
   const { name, use, precautions, sideEffects } = route.params
-  console.log(route)
 
   return (
     <View style={styles.container}>

@@ -35,7 +35,7 @@ const AuthenticatedNavigator = () => {
         options={{
           tabBarLabel: "Drugs",
           tabBarIcon: () => <FontAwesome6 name="prescription-bottle-medical" size={24} color="black" />,
-          headerTitle: "Drug Research"
+          headerShown: false
         }}
       />
 
@@ -45,7 +45,7 @@ const AuthenticatedNavigator = () => {
         options={{
           tabBarLabel: "Symptom Checker",
           tabBarIcon: () => <Fontisto name="doctor" size={24} color="black" />,
-          headerTitle: "Symptom Checker"
+          headerShown: false
         }}
       />
     </Tab.Navigator>

@@ -13,6 +13,7 @@ const SymptomResultsScreen = () => {
       <View style={styles.treatment}>
         {treatmentPlan.map(item =>
           <TreatmentItem
+            key={item.name}
             name={item.name}
             dose={item.dose}
             description={item.description}

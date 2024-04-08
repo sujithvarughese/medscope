@@ -12,9 +12,27 @@ const SymptomCheckerStack = () => {
   return (
     <SymptomProvider>
       <Stack.Navigator initialRouteName="Selector">
-        <Stack.Screen name="Selector" component={AgeSexSelectorScreen} />
-        <Stack.Screen name="Lookup" component={SymptomLookupScreen} />
-        <Stack.Screen name="Results" component={SymptomResultsScreen} />
+        <Stack.Screen
+          name="Selector"
+          component={AgeSexSelectorScreen}
+          options={{
+            headerTitle: "Profile"
+          }}
+        />
+        <Stack.Screen
+          name="Lookup"
+          component={SymptomLookupScreen}
+          options={{
+            headerTitle: "Symptoms"
+          }}
+        />
+        <Stack.Screen
+          name="Results"
+          component={SymptomResultsScreen}
+          options={{
+            headerTitle: ""
+          }}
+        />
       </Stack.Navigator>
     </SymptomProvider>
 
