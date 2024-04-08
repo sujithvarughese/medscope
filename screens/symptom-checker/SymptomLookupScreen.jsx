@@ -74,7 +74,6 @@ const SymptomLookupScreen = ({ navigation }) => {
           data={queryMatches}
           keyExtractor={item => item}
           renderItem={({item}) =>
-
             <Pressable
               style={styles.symptomItem}
               onPress={() => toggleSymptomSelect(item)}
@@ -151,7 +150,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     paddingVertical: 8,
     borderBottomColor: "#E8E8E8",
-    borderBottomWidth: 1
+    borderBottomWidth: 1,
   },
   symptomItemText: {
     fontSize: 20,

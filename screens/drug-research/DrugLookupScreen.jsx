@@ -5,7 +5,7 @@ import axios from 'axios'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import connect from '../../utils/connect'
 import DrugResultsScreen from './DrugResultsScreen'
-import { FontAwesome6 } from '@expo/vector-icons';
+import { FontAwesome5, FontAwesome6 } from '@expo/vector-icons'
 import { colors } from '../../utils/styles'
 import Button from '../../components/ui/Button'
 import { drugListData } from '../../data/drugList'
@@ -14,7 +14,7 @@ const DrugLookupScreen = ({ navigation }) => {
 
   const [isLoading, setIsLoading] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
-  const [queryMatches, setQueryMatches] = useState([])
+  const [queryMatches, setQueryMatches] = useState(drugListData)
   const [drugInformation, setDrugInformation] = useState(null)
 
   const fetchDrugInformation = async (drug) => {
@@ -39,9 +39,6 @@ const DrugLookupScreen = ({ navigation }) => {
   }
 
   useEffect(() => {
-    if (searchQuery.length <= 0) {
-      setQueryMatches([])
-    }
     // delay after user starts typing before searching
     setTimeout(() => {
       // filter workouts based on user-entered query once user has entered 3 letters
@@ -54,45 +51,40 @@ const DrugLookupScreen = ({ navigation }) => {
   }, [searchQuery])
   return (
     <View style={styles.container}>
-
-      <Text style={styles.searchHeading}>Search brand name or drug ingredient</Text>
-
-      <View style={styles.searchContainer}>
-
+      <View style={styles.content}>
 
         <View style={styles.searchSection}>
-          <TextInput
-            style={styles.searchBar}
-            value={searchQuery}
-            onChangeText={(query) => setSearchQuery(query)}
-            onSubmitEditing={(value) => handleSubmit(value)}
-            returnKeyType="search"
-            placeholder="Search ingredients or drug brand name"
-            dense={true}
-            clearButtonMode='always'
-            autoCapitalize="none"
-          >
-          </TextInput>
-          <View>
-            <Text>Search</Text>
+          <View style={styles.searchBar}>
+            <TextInput
+                value={searchQuery}
+                onChangeText={(query) => setSearchQuery(query)}
+                onSubmitEditing={(value) => handleSubmit(value)}
+                returnKeyType="search"
+                placeholder="Search ingredients or drug brand name"
+                dense={true}
+                clearButtonMode='always'
+                autoCapitalize="none"
+            >
+            </TextInput>
+            <View style={styles.searchIcon}>
+              <FontAwesome5 name="search" size={16} color="red" />
+            </View>
           </View>
         </View>
 
-
-        {searchQuery.length > 0 &&
-          <FlatList
-            style={styles.drugList}
-            data={queryMatches}
-            keyExtractor={item => item}
-            renderItem={({item}) =>
-              <Pressable
-                style={styles.drugItem}
-                onPress={()=>handleSubmit(item)}
-              >
-                <Text style={styles.drugItemText}>{item}</Text>
-              </Pressable>
-            }
-          />}
+        <FlatList
+          style={styles.drugList}
+          data={queryMatches}
+          keyExtractor={item => item}
+          renderItem={({item}) =>
+            <Pressable
+              style={styles.drugItem}
+              onPress={()=>handleSubmit(item)}
+          >
+            <Text style={styles.drugItemText} numberOfLines={1}>{item}</Text>
+            </Pressable>
+          }
+        />
 
       </View>
 
@@ -103,29 +95,25 @@ const DrugLookupScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 24,
     alignItems: "center",
-    gap: 24
+    justifyContent: "center"
   },
-  searchContainer: {
+  content: {
+    flex: 1,
     alignItems: "center",
+    justifyContent: "center",
     backgroundColor: "#FFFFFF",
-    padding: 24,
-    width: 300,
+    width: "100%",
+    padding: 12
   },
   searchSection: {
-    gap: 8,
-    margin: 25,
-    padding: 25,
-    borderRadius: 8,
+    flexDirection: "row",
+    gap: 8
   },
   headingText: {
     textAlign: "center",
     fontWeight: "600",
     fontSize: 18,
-  },
-  searchHeading: {
-    fontSize: 16
   },
   searchBar: {
     backgroundColor: "white",
@@ -134,16 +122,31 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     paddingHorizontal: 12,
     paddingVertical: 6,
-    width: 180,
+    width: 280,
+    justifyContent: "center",
+    margin: 12,
+    height: 42,
+  },
+  searchIcon: {
+    position: "absolute",
+    paddingHorizontal: 6,
+    alignSelf: "flex-end",
   },
   drugList: {
-    backgroundColor: "white",
+    marginVertical: 16,
   },
   drugItem: {
-
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: 8,
+    paddingVertical: 8,
+    borderBottomColor: "#E8E8E8",
+    borderBottomWidth: 1
   },
   drugItemText: {
     fontSize: 20,
+    maxWidth: "90%"
   },
 })
 
