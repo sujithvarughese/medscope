@@ -1,14 +1,10 @@
 import { View, StyleSheet, Text, ScrollView, TextInput, FlatList, Pressable } from 'react-native'
-
 import { useEffect, useState } from 'react'
-import axios from 'axios'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import connect from '../../utils/connect'
-import DrugResultsScreen from './DrugResultsScreen'
 import { FontAwesome5, FontAwesome6 } from '@expo/vector-icons'
-import { colors } from '../../utils/styles'
-import Button from '../../components/ui/Button'
 import { drugListData } from '../../data/drugList'
+import LoadingOverlay from '../../components/ui/LoadingOverlay'
 
 const DrugLookupScreen = ({ navigation }) => {
 
@@ -19,10 +15,14 @@ const DrugLookupScreen = ({ navigation }) => {
 
   const fetchDrugInformation = async (drug) => {
     try {
+      setIsLoading(true)
       const response = await connect.post("drug", { drug })
       return response.data
     } catch (error) {
       throw new Error(error)
+    }
+    finally {
+      setIsLoading(false)
     }
   }
 
@@ -49,6 +49,11 @@ const DrugLookupScreen = ({ navigation }) => {
       }
     }, 100)
   }, [searchQuery])
+
+  if (isLoading) {
+    return <LoadingOverlay />
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.content}>
