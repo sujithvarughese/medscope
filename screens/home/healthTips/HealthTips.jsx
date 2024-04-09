@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import { useEffect, useState } from 'react'
 import connect from '../../../utils/connect'
-
+import { Ionicons } from '@expo/vector-icons';
 
 const HealthTips = () => {
 
@@ -23,7 +23,10 @@ const HealthTips = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Health tip of the day</Text>
+      <View style={styles.heading}>
+        <Ionicons style={styles.icon} name="fitness-sharp" size={24} color="red" />
+        <Text style={styles.title}>Health tip of the day</Text>
+      </View>
       <Text style={styles.text}>{tip}</Text>
     </View>
 
@@ -46,11 +49,15 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   heading: {
+    flexDirection: "row",
+    gap: 8,
+  },
+  icon: {
+
+  },
+  title: {
     fontSize: 16,
     fontWeight: "600"
-  },
-  text: {
-
   }
 })
 

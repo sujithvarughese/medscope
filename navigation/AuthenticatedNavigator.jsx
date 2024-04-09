@@ -7,8 +7,8 @@ import { FontAwesome6 } from '@expo/vector-icons';
 import { useAuthContext } from '../context/auth-context'
 import IconButton from '../components/ui/IconButton'
 import DrugLookupScreen from '../screens/drug-research/DrugLookupScreen'
-import SymptomCheckerStack from './stacks/SymptomCheckerStack'
-import DrugResearchStack from './stacks/DrugResearchStack'
+import SymptomCheckerStack from './SymptomCheckerStack'
+import DrugResearchStack from './DrugResearchStack'
 
 
 

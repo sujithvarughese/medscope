@@ -46,7 +46,15 @@ const SymptomProvider = ({ children }) => {
       throw new Error(error)
     }
   }
+  const fetchDrugInformation = async (drug) => {
+    try {
+      const response = await connect.post("drug", { drug })
+      return response.data
+    } catch (error) {
+      throw new Error(error)
+    }
 
+  }
   return (
     <SymptomContext.Provider value={
     {
@@ -55,7 +63,8 @@ const SymptomProvider = ({ children }) => {
       setSex,
       toggleSymptomSelect,
       resetSymptoms,
-      fetchTreatmentPlan
+      fetchTreatmentPlan,
+      fetchDrugInformation
     }
   }>
     {children}

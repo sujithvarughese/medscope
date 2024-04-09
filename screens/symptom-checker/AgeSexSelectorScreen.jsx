@@ -9,14 +9,15 @@ const AgeSexSelectorScreen = ({ navigation }) => {
   const { age, setAge, sex, setSex } = useSymptomContext()
 
   return (
-    <View style={styles.container}>
-      <View style={styles.content}>
+    <View style={styles.page}>
+      <View style={styles.container}>
 
         <View style={styles.ageContainer}>
           <Text style={styles.heading}>Select your Age</Text>
           <Text style={styles.ageValue}>{age}</Text>
           <View style={styles.ageSlider}>
             <Slider
+              style={styles.slider}
               value={age}
               onValueChange={(value) =>{setAge(value)}}
               minimumValue={18}
@@ -52,14 +53,14 @@ const AgeSexSelectorScreen = ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  page: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
   },
-  content: {
+  container: {
     alignItems: "center",
-    justifyContent: "space-around",
+    justifyContent: "space-evenly",
     backgroundColor: "#FFFFFF",
     elevation: 8,
     shadowColor: "#000",
@@ -74,10 +75,12 @@ const styles = StyleSheet.create({
     height: "75%",
   },
   ageContainer: {
-
+    width: "60%",
+    gap: 8,
   },
   heading: {
-      fontSize: 16,
+    fontSize: 16,
+    alignSelf: "center",
   },
   ageValue: {
     alignSelf: "center",
@@ -87,9 +90,12 @@ const styles = StyleSheet.create({
   ageSlider: {
 
   },
+  slider: {
+
+  },
   sexContainer: {
     alignItems: "center",
-
+    gap: 8,
   },
   sexSelections: {
     width: "100%",
@@ -99,7 +105,17 @@ const styles = StyleSheet.create({
   },
   sexSelection: {
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    padding: 6,
+    elevation: 8,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    borderRadius: 8,
   },
   sexSelected: {
     backgroundColor: colors.color

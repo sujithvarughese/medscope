@@ -1,9 +1,29 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import { useSymptomContext } from '../../context/symptom-context'
 const TreatmentItem = ({ name, dose, description, precautions, sideEffects }) => {
+
+  const navigation = useNavigation()
+  const { fetchDrugInformation } = useSymptomContext()
+
+  const handleSubmit = async () => {
+    const { drugInformationData } = await fetchDrugInformation(name)
+    navigation.navigate("DrugInfo", {
+      name: drugInformationData.name,
+      use: drugInformationData.use,
+      precautions: drugInformationData.precautions,
+      sideEffects: drugInformationData.sideEffects
+
+    })
+  }
+
   return (
     <View style={styles.container}>
 
-      <Text style={styles.name}>{name}</Text>
+      <Pressable onPress={handleSubmit}>
+        <Text style={styles.name}>{name}</Text>
+      </Pressable>
+
 
       <View style={styles.dose}>
         <Text style={styles.title}>{dose ? "Dose" : "Description"}</Text>

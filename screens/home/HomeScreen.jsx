@@ -14,16 +14,10 @@ const HomeScreen = () => {
 }
 const styles = StyleSheet.create({
   container: {
-    padding: 8
-  },
-  headerContainer: {
-    height: 110
+    padding: 8,
   },
   news: {
 
   },
-  drugs: {
-
-  }
 })
 export default HomeScreen

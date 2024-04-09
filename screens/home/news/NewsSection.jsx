@@ -36,7 +36,8 @@ const NewsSection = () => {
 
 const styles = StyleSheet.create({
   container: {
-    gap: 12
+    gap: 12,
+    paddingVertical: 12,
   }
 })
 
