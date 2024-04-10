@@ -3,14 +3,14 @@ import { useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import connect from '../../utils/connect'
 import { FontAwesome5, FontAwesome6 } from '@expo/vector-icons'
-import { drugListData } from '../../data/drugList'
+import { commonDrugList } from '../../data/commonDrugList'
 import LoadingOverlay from '../../components/ui/LoadingOverlay'
 
 const DrugLookupScreen = ({ navigation }) => {
 
   const [isLoading, setIsLoading] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
-  const [queryMatches, setQueryMatches] = useState(drugListData)
+  const [queryMatches, setQueryMatches] = useState(commonDrugList)
   const [drugInformation, setDrugInformation] = useState(null)
 
   const fetchDrugInformation = async (drug) => {
@@ -37,7 +37,7 @@ const DrugLookupScreen = ({ navigation }) => {
 
     })
   }
-
+/*
   useEffect(() => {
     // delay after user starts typing before searching
     setTimeout(() => {
@@ -46,6 +46,32 @@ const DrugLookupScreen = ({ navigation }) => {
         const filteredDrugs = drugListData.filter(drug => drug.toLowerCase().includes(searchQuery.toLowerCase()))
         // loadOptions enables immediate filtering on input change with callback function passing in filtered results
         setQueryMatches(filteredDrugs)
+      }
+    }, 100)
+  }, [searchQuery])
+*/
+
+  const fetchAutocompleteResults = async () => {
+    try {
+      const response = await connect(`drug?query=${searchQuery}`)
+      const { results } = response.data
+      console.log(results)
+      // loadOptions enables immediate filtering on input change with callback function passing in filtered results
+      setQueryMatches(results)
+    } catch (error) {
+      throw new Error(error)
+    }
+  }
+  useEffect(() => {
+    // delay after user starts typing before searching
+    if (searchQuery.length === 0) {
+      setQueryMatches(commonDrugList)
+      return
+    }
+    setTimeout(() => {
+      // filter workouts based on user-entered query once user has entered 3 letters
+      if (searchQuery.length > 2) {
+        fetchAutocompleteResults()
       }
     }, 100)
   }, [searchQuery])
@@ -151,7 +177,8 @@ const styles = StyleSheet.create({
   },
   drugItemText: {
     fontSize: 20,
-    maxWidth: "90%"
+    maxWidth: "90%",
+    textTransform: "capitalize",
   },
 })
 
