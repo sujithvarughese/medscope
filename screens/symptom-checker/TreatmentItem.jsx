@@ -8,7 +8,7 @@ const TreatmentItem = ({ name, dose, description, precautions, sideEffects }) =>
 
   const handleSubmit = async () => {
     const { drugInformationData } = await fetchDrugInformation(name)
-    navigation.navigate("DrugInfo", {
+    navigation.navigate("DrugDetails", {
       name: drugInformationData.name,
       use: drugInformationData.use,
       precautions: drugInformationData.precautions,
