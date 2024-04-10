@@ -29,7 +29,7 @@ const DrugLookupScreen = ({ navigation }) => {
   const handleSubmit = async (selectedDrug) => {
     setSearchQuery("")
     const { drugInformationData } = await fetchDrugInformation(selectedDrug)
-    navigation.navigate("DrugInfo", {
+    navigation.navigate("DrugDetails", {
       name: drugInformationData.name,
       use: drugInformationData.use,
       precautions: drugInformationData.precautions,

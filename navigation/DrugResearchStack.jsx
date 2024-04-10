@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import DrugLookupScreen from "../screens/drug-research/DrugLookupScreen"
-import DrugDetailsScreen from '../screens/drug-research/DrugDetailsScreen'
+import DrugDetailsTabNavigator from './DrugDetailsTabNavigator'
 
 
 
@@ -20,8 +20,8 @@ const DrugResearchStack = () => {
           }}
         />
         <Stack.Screen
-          name="DrugInfo"
-          component={DrugDetailsScreen}
+          name="DrugDetails"
+          component={DrugDetailsTabNavigator}
           options={{
             headerTitle: ""
           }}
