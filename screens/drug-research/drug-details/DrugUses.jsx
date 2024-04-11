@@ -13,7 +13,7 @@ const DrugUses = ({ name, description, uses }) => {
 
             <View>
                 <Text style={styles.heading}>Uses</Text>
-                {uses.map((use, index) => <Text key={index} style={styles.list}>{'\u00B7'} {use}</Text>)}
+                {uses?.map((use, index) => <Text key={index} style={styles.list}>{'\u00B7'} {use}</Text>)}
             </View>
 
         </View>

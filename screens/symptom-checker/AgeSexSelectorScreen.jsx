@@ -79,12 +79,12 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   heading: {
-    fontSize: 16,
+    fontSize: 18,
     alignSelf: "center",
   },
   ageValue: {
     alignSelf: "center",
-    fontSize: 16,
+    fontSize: 24,
     fontWeight: "700"
   },
   ageSlider: {

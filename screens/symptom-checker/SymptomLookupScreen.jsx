@@ -37,8 +37,8 @@ const SymptomLookupScreen = ({ navigation }) => {
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.content}>
+    <View style={styles.page}>
+      <View style={styles.container}>
 
         <View style={styles.searchSection}>
           <View style={styles.searchBar}>
@@ -56,17 +56,21 @@ const SymptomLookupScreen = ({ navigation }) => {
               <FontAwesome5 name="search" size={16} color="red" />
             </View>
           </View>
+
+          <View>
+            <Button onPress={handleSubmit}><Text>Search</Text></Button>
+          </View>
+
         </View>
 
         <View style={styles.selectedSymptomList}>
           {selectedSymptoms.map(item =>
-            <View style={styles.selectedSymptomItem}>
-              <Text style={styles.selectedSymptomText} numberOfLines={1}>{item}</Text>
-              <Pressable onPress={() => toggleSymptomSelect(item)}>
-                <Ionicons name="remove-circle-sharp" size={20} color="red" />
-              </Pressable>
-
-            </View>)}
+          <View style={styles.selectedSymptomItem} key={item}>
+            <Text style={styles.selectedSymptomText} numberOfLines={1}>{item}</Text>
+            <Pressable onPress={() => toggleSymptomSelect(item)}>
+              <Ionicons name="remove-circle-sharp" size={20} color="red" />
+            </Pressable>
+          </View>)}
         </View>
 
         <FlatList
@@ -85,22 +89,18 @@ const SymptomLookupScreen = ({ navigation }) => {
           }
         />
 
-        <View>
-          <Button onPress={handleSubmit}><Text>Search</Text></Button>
-        </View>
-
       </View>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
+  page: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
   },
-  content: {
+  container: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
@@ -110,14 +110,16 @@ const styles = StyleSheet.create({
   },
   searchSection: {
     flexDirection: "row",
-    gap: 8
+    alignItems: "center",
+    justifyContent:"space-around",
   },
   searchBar: {
     backgroundColor: "white",
     borderColor: "#ccc",
     borderWidth: 1,
     borderRadius: 6,
-    paddingHorizontal: 12,
+    paddingLeft: 28,
+    paddingRight: 12,
     paddingVertical: 6,
     width: 280,
     justifyContent: "center",
@@ -127,7 +129,7 @@ const styles = StyleSheet.create({
   searchIcon: {
     position: "absolute",
     paddingHorizontal: 6,
-    alignSelf: "flex-end",
+    alignSelf: "flex-start",
   },
   selectedSymptomList: {
     width: 300,
@@ -141,7 +143,7 @@ const styles = StyleSheet.create({
 
   },
   symptomList: {
-    marginVertical: 16,
+    width: "100%"
   },
   symptomItem: {
     flexDirection: "row",
@@ -154,7 +156,8 @@ const styles = StyleSheet.create({
   },
   symptomItemText: {
     fontSize: 20,
-    maxWidth: "90%"
+    maxWidth: "90%",
+    textTransform: "capitalize",
   }
 })
 export default SymptomLookupScreen

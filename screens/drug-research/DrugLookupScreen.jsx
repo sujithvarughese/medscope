@@ -11,7 +11,6 @@ const DrugLookupScreen = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
   const [queryMatches, setQueryMatches] = useState(commonDrugList)
-  const [drugInformation, setDrugInformation] = useState(null)
 
   const fetchDrugInformation = async (drug) => {
     try {
@@ -29,7 +28,6 @@ const DrugLookupScreen = ({ navigation }) => {
   const handleSubmit = async (selectedDrug) => {
     setSearchQuery("")
     const { drugInformationData } = await fetchDrugInformation(selectedDrug)
-    console.log(drugInformationData)
     navigation.navigate("DrugDetails", {
       name: drugInformationData.name,
       description: drugInformationData.description,
@@ -83,8 +81,8 @@ const DrugLookupScreen = ({ navigation }) => {
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.content}>
+    <View style={styles.page}>
+      <View style={styles.container}>
 
         <View style={styles.searchSection}>
           <View style={styles.searchBar}>
@@ -126,12 +124,12 @@ const DrugLookupScreen = ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  page: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center"
   },
-  content: {
+  container: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
@@ -153,9 +151,10 @@ const styles = StyleSheet.create({
     borderColor: "#ccc",
     borderWidth: 1,
     borderRadius: 6,
-    paddingHorizontal: 12,
+    paddingLeft: 28,
+    paddingRight: 12,
     paddingVertical: 6,
-    width: 280,
+    width: "96%",
     justifyContent: "center",
     margin: 12,
     height: 42,
@@ -163,15 +162,12 @@ const styles = StyleSheet.create({
   searchIcon: {
     position: "absolute",
     paddingHorizontal: 6,
-    alignSelf: "flex-end",
+    alignSelf: "flex-start",
   },
   drugList: {
-    marginVertical: 16,
+    width: "100%"
   },
   drugItem: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
     paddingHorizontal: 8,
     paddingVertical: 8,
     borderBottomColor: "#E8E8E8",
@@ -179,7 +175,6 @@ const styles = StyleSheet.create({
   },
   drugItemText: {
     fontSize: 20,
-    maxWidth: "90%",
     textTransform: "capitalize",
   },
 })

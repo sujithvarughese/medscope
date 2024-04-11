@@ -1,39 +1,66 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { useSymptomContext } from '../../context/symptom-context'
 import TreatmentItem from './TreatmentItem'
+import LoadingOverlay from '../../components/ui/LoadingOverlay'
 
 const SymptomResultsScreen = () => {
 
   const { treatmentPlan } = useSymptomContext()
+  const [isLoading, setIsLoading] = useState(false)
+
+  if (isLoading) {
+    return <LoadingOverlay />
+  }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Treatment Options</Text>
-      <View style={styles.treatment}>
-        {treatmentPlan.map(item =>
-          <TreatmentItem
-            key={item.name}
-            name={item.name}
-            dose={item.dose}
-            description={item.description}
-            precautions={item.precautions}
-            sideEffects={item.sideEffects}
-          />)}
+    <View style={styles.page}>
+      <View style={styles.container}>
+        <Text style={styles.heading}>Treatment Options</Text>
+        <View style={styles.treatment}>
+          {treatmentPlan?.map(item =>
+            <TreatmentItem
+              key={item.name}
+              setIsLoading={setIsLoading}
+              name={item.name}
+              directions={item.directions}
+            />)}
+        </View>
+
       </View>
     </View>
   )
 }
 const styles = StyleSheet.create({
-  container: {
-    padding: 8,
+  page: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 20,
   },
-  title: {
+  container: {
+    gap: 24,
+    alignItems: "center",
+    backgroundColor: "#FFFFFF",
+    elevation: 8,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    borderRadius: 10,
+    paddingVertical: 12,
+  },
+  heading: {
     fontSize: 20,
+    fontWeight: "700",
     textAlign: "center"
   },
   treatment: {
-
+    flex: 1,
+    gap: 24,
   }
 })
 export default SymptomResultsScreen

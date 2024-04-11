@@ -24,7 +24,7 @@ const SymptomCheckerStack = () => {
           name="Lookup"
           component={SymptomLookupScreen}
           options={{
-            headerTitle: "Symptoms"
+            headerTitle: "Symptom Select"
           }}
         />
         <Stack.Screen

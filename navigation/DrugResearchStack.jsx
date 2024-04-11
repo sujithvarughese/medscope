@@ -16,7 +16,7 @@ const DrugResearchStack = () => {
           name="Lookup"
           component={DrugLookupScreen}
           options={{
-            headerTitle: "Search"
+            headerTitle: "Drug Lookup"
           }}
         />
         <Stack.Screen
