@@ -37,7 +37,6 @@ const DrugLookupScreen = ({ navigation }) => {
       directions: drugInformationData.directions,
       precautions: drugInformationData.precautions,
       sideEffects: drugInformationData.sideEffects
-
     })
   }
 /*

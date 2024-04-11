@@ -1,12 +1,17 @@
 
 import { StyleSheet, Text, View } from 'react-native'
 
-const DrugPrecautions = ({ precautions }) => {
+const DrugPrecautions = ({ precautions, sideEffects }) => {
     return (
         <View style={styles.container}>
-            <View style={styles.precautions}>
-                <Text style={styles.title}>Precautions</Text>
-                <Text>{precautions}</Text>
+            <View>
+                <Text style={styles.heading}>Precautions</Text>
+                <Text style={styles.text}>{precautions}</Text>
+            </View>
+            <View>
+                <Text style={styles.heading}>Side Effects</Text>
+                {sideEffects?.map((sideEffect, index) =>
+                  <Text key={index} style={styles.list}>{'\u00B7'} {sideEffect}</Text>)}
             </View>
         </View>
     )
@@ -15,8 +20,8 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: "#FFFFFF",
         flex: 1,
-        gap: 4,
-        padding: 6,
+        gap: 16,
+        padding: 12,
         elevation: 8,
         shadowColor: "#000",
         shadowOffset: {
@@ -25,13 +30,19 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.25,
         shadowRadius: 4,
-        borderRadius: 10,
     },
-    precautions: {
-
-    },
-    title: {
+    heading: {
         fontWeight: "700",
+        paddingVertical: 8,
+    },
+    text: {
+        fontSize: 16,
+        lineHeight: 22,
+    },
+    list: {
+        fontSize: 16,
+        lineHeight: 22,
+        textTransform: "capitalize"
     }
 })
 export default DrugPrecautions

@@ -1,22 +1,19 @@
 
 import { StyleSheet, Text, View } from 'react-native'
 
-const DrugUses = ({ name, description, uses, directions }) => {
+const DrugUses = ({ name, description, uses }) => {
 
     return (
         <View style={styles.container}>
 
-            <View style={styles.description}>
+            <View>
                 <Text style={styles.heading}>What is {name}?</Text>
-                <Text>{description}</Text>
+                <Text style={styles.text}>{description}</Text>
             </View>
+
             <View>
                 <Text style={styles.heading}>Uses</Text>
-                {uses.map(use => <Text>{use}</Text>)}
-            </View>
-            <View>
-                <Text style={styles.heading}></Text>
-                <Text>{directions}</Text>
+                {uses.map((use, index) => <Text key={index} style={styles.list}>{'\u00B7'} {use}</Text>)}
             </View>
 
         </View>
@@ -27,8 +24,8 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: "#FFFFFF",
         flex: 1,
-        gap: 4,
-        padding: 6,
+        gap: 16,
+        padding: 12,
         elevation: 8,
         shadowColor: "#000",
         shadowOffset: {
@@ -37,20 +34,21 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.25,
         shadowRadius: 4,
-        borderRadius: 10,
+
     },
     heading: {
-
+        fontWeight: "700",
+        paddingVertical: 8,
     },
-    description: {
-
+    text: {
+        fontSize: 16,
+        lineHeight: 22,
     },
-    uses: {
-
-    },
-    directions: {
-
-    },
+    list: {
+        fontSize: 16,
+        lineHeight: 22,
+        textTransform: "capitalize"
+    }
 
 })
 export default DrugUses
