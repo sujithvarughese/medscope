@@ -9,7 +9,7 @@ import DrugSideEffects from '../screens/drug-research/drug-details/DrugSideEffec
 const renderScene = ({ route }) => {
   switch (route.key) {
     case "first":
-      return <DrugUses name={route.name} use={route.use}/>
+      return <DrugUses name={route.name} description={route.description} uses={route.uses} directions={route.directions}/>
     case "second":
       return <DrugPrecautions precautions={route.precautions}/>
     case "third":
@@ -19,13 +19,13 @@ const renderScene = ({ route }) => {
   }
 }
 const DrugDetailsTabNavigator = ({route}) => {
-  const { name, use, precautions, sideEffects } = route.params
+  const { name, description, uses, directions, precautions, sideEffects } = route.params
 
   const layout = useWindowDimensions();
 
   const [index, setIndex] = useState(0);
   const [routes] = useState([
-    { key: 'first', title: 'Uses', name: name, use: use },
+    { key: 'first', title: 'Uses', name: name, description: description, uses: uses, directions: directions },
     { key: 'second', title: 'Precautions', precautions: precautions },
     { key: 'third', title: 'Side Effects', sideEffects: sideEffects },
   ]);

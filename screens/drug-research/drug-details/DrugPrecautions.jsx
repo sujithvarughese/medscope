@@ -6,9 +6,7 @@ const DrugPrecautions = ({ precautions }) => {
         <View style={styles.container}>
             <View style={styles.precautions}>
                 <Text style={styles.title}>Precautions</Text>
-                <View>
-                    {precautions?.map((precaution, index) => <Text key={index}>{precaution}</Text>)}
-                </View>
+                <Text>{precautions}</Text>
             </View>
         </View>
     )

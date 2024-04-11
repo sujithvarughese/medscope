@@ -1,17 +1,24 @@
 
 import { StyleSheet, Text, View } from 'react-native'
 
-const DrugUses = ({ name, use }) => {
+const DrugUses = ({ name, description, uses, directions }) => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.use}>
-                <Text style={styles.title}>What is {name}?</Text>
-                <Text>{use}</Text>
+
+            <View style={styles.description}>
+                <Text style={styles.heading}>What is {name}?</Text>
+                <Text>{description}</Text>
             </View>
-            <Text>
-                {name}
-            </Text>
+            <View>
+                <Text style={styles.heading}>Uses</Text>
+                {uses.map(use => <Text>{use}</Text>)}
+            </View>
+            <View>
+                <Text style={styles.heading}></Text>
+                <Text>{directions}</Text>
+            </View>
+
         </View>
     )
 }
@@ -32,11 +39,18 @@ const styles = StyleSheet.create({
         shadowRadius: 4,
         borderRadius: 10,
     },
-    use: {
+    heading: {
 
     },
-    title: {
+    description: {
 
-    }
+    },
+    uses: {
+
+    },
+    directions: {
+
+    },
+
 })
 export default DrugUses
