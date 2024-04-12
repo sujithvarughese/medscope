@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
-import { useSymptomContext } from '../../context/symptom-context'
+import { useMedContext } from '../../context/med-context'
 import connect from '../../utils/connect'
 import { useState } from 'react'
 import LoadingOverlay from '../../components/ui/LoadingOverlay'

@@ -3,12 +3,12 @@ import { FlatList, Pressable, StyleSheet, Text, TextInput, View } from 'react-na
 import { medicalConditionListSorted } from '../../data/medicalConditions'
 import { FontAwesome5, Ionicons } from '@expo/vector-icons'
 import { colors } from '../../utils/styles'
-import { useSymptomContext } from '../../context/symptom-context'
+import { useMedContext } from '../../context/med-context'
 import Button from '../../components/ui/Button'
 
 const SymptomLookupScreen = ({ navigation }) => {
 
-  const { selectedSymptoms, toggleSymptomSelect, resetConditions, fetchTreatmentPlan } = useSymptomContext()
+  const { selectedSymptoms, toggleSymptomSelect, resetSymptoms, fetchTreatmentPlan } = useMedContext()
 
 
   const [searchQuery, setSearchQuery] = useState("")

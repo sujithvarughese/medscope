@@ -2,11 +2,11 @@ import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { Slider } from '@miblanchard/react-native-slider';
 import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../../utils/styles'
-import { useSymptomContext } from '../../context/symptom-context'
+import { useMedContext } from '../../context/med-context'
 import Button from '../../components/ui/Button'
 const AgeSexSelectorScreen = ({ navigation }) => {
 
-  const { age, setAge, sex, setSex } = useSymptomContext()
+  const { age, setAge, sex, setSex } = useMedContext()
 
   return (
     <View style={styles.page}>

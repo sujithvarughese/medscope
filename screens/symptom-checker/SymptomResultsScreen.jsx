@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { useSymptomContext } from '../../context/symptom-context'
+import { useMedContext } from '../../context/med-context'
 import TreatmentItem from './TreatmentItem'
 import LoadingOverlay from '../../components/ui/LoadingOverlay'
 
 const SymptomResultsScreen = () => {
 
-  const { treatmentPlan } = useSymptomContext()
+  const { treatmentPlan } = useMedContext()
   const [isLoading, setIsLoading] = useState(false)
 
   if (isLoading) {
