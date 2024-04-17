@@ -4,6 +4,7 @@ import SymptomLookupScreen from '../screens/symptom-checker/SymptomLookupScreen'
 import SymptomResultsScreen from '../screens/symptom-checker/SymptomResultsScreen'
 import SymptomProvider from '../context/med-context'
 import DrugDetailsTabNavigator from './DrugDetailsTabNavigator'
+import { colors } from '../utils/styles'
 
 const Stack = createNativeStackNavigator()
 
@@ -17,7 +18,10 @@ const SymptomCheckerStack = () => {
           name="Selector"
           component={AgeSexSelectorScreen}
           options={{
-            headerTitle: "Profile"
+            headerTitle: "Profile",
+            headerStyle: {
+              backgroundColor: colors.color
+            }
           }}
         />
         <Stack.Screen

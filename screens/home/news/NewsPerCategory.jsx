@@ -22,7 +22,8 @@ const NewsPerCategory = ({ category, articles }) => {
 const styles = StyleSheet.create({
   container: {
     gap: 4,
-
+    paddingTop: 12,
+    paddingHorizontal: 6,
   },
   text: {
     fontWeight: "700",

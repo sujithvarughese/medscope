@@ -52,17 +52,18 @@ const styles = StyleSheet.create({
     gap: 3,
   },
   source: {
-
+    fontSize: 13,
   },
   touchable: {
 
   },
   title: {
-    fontWeight: "700",
+    fontWeight: "600",
   },
   date: {
     fontSize: 12,
     fontStyle: "italic",
+    color: "gray"
   }
 })
 

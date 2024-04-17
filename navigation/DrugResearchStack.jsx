@@ -1,6 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import DrugLookupScreen from "../screens/drug-research/DrugLookupScreen"
 import DrugDetailsTabNavigator from './DrugDetailsTabNavigator'
+import { colors } from '../utils/styles'
 
 
 
@@ -16,7 +17,7 @@ const DrugResearchStack = () => {
           name="Lookup"
           component={DrugLookupScreen}
           options={{
-            headerTitle: "Drug Lookup"
+            headerTitle: "Drug Lookup",
           }}
         />
         <Stack.Screen
