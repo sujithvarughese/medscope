@@ -49,7 +49,8 @@ const AuthenticatedNavigator = () => {
         options={{
           tabBarLabel: "Symptoms",
           tabBarIcon: () => <Fontisto name="doctor" size={24} color="black" />,
-          headerShown: false
+          headerShown: false,
+
         }}
       />
       <Tab.Screen
@@ -58,7 +59,7 @@ const AuthenticatedNavigator = () => {
         options={{
           tabBarLabel: "Interactions",
           tabBarIcon: () => <FontAwesome5 name="hand-holding-medical" size={24} color="black" />,
-          headerShown: false,
+          headerTitle: "Drug Interactions",
         }}
       />
     </Tab.Navigator>

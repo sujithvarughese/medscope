@@ -13,18 +13,19 @@ const DrugInteractionScreen = () => {
   const [selectedItems, setSelectedItems] = useState([])
 
   const handleSubmit = () => {
-
+    console.log("submitted")
   }
 
-  const handleSelectToggle = (item) => {
-    if (selectedItems. length >= 5 && selectedItems.includes(item)) {
+  const handleSelectToggle = (toggledItem) => {
+    if (selectedItems.length >= 5 && !selectedItems.includes(toggledItem)) {
       console.log("5 meds max")
+      return
     }
-    if (selectedItems.includes(item)) {
-      const updatedSelectedItems = [...selectedItems, item]
+    if (!selectedItems.includes(toggledItem)) {
+      const updatedSelectedItems = [...selectedItems, toggledItem]
       setSelectedItems(updatedSelectedItems)
     } else {
-      const updatedSelectedItems = selectedItems.filter(selected => selected !== item)
+      const updatedSelectedItems = selectedItems.filter(selected => selected !== toggledItem)
       setSelectedItems(updatedSelectedItems)
     }
   }
@@ -51,6 +52,7 @@ const DrugInteractionScreen = () => {
       <View style={styles.container}>
 
         <View style={styles.searchSection}>
+
           <View style={styles.searchBar}>
             <TextInput
               value={searchQuery}
@@ -64,12 +66,13 @@ const DrugInteractionScreen = () => {
             <View style={styles.searchIcon}>
               <FontAwesome5 name="search" size={16} color="red" />
             </View>
-            { selectedItems.length >= 2 &&
-              <View>
-                <Button onPress={handleSubmit}><Text>Search</Text></Button>
-              </View>
-            }
           </View>
+
+          { selectedItems.length >= 2 &&
+          <View>
+            <Button onPress={handleSubmit}><Text>Search</Text></Button>
+          </View>
+          }
         </View>
 
         <View style={styles.selectedList}>
@@ -79,7 +82,8 @@ const DrugInteractionScreen = () => {
               <Pressable onPress={() => handleSelectToggle(item)}>
                 <Ionicons name="remove-circle-sharp" size={20} color="red" />
               </Pressable>
-            </View>)}
+            </View>
+          )}
         </View>
 
         <FlatList
@@ -128,7 +132,7 @@ const styles = StyleSheet.create({
     paddingLeft: 28,
     paddingRight: 12,
     paddingVertical: 6,
-    width: "96%",
+    width: 280,
     justifyContent: "center",
     margin: 12,
     height: 42,
@@ -142,13 +146,17 @@ const styles = StyleSheet.create({
     width: "100%"
   },
   listItem: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     paddingHorizontal: 8,
     paddingVertical: 8,
     borderBottomColor: "#E8E8E8",
-    borderBottomWidth: 1
+    borderBottomWidth: 1,
   },
   listItemText: {
     fontSize: 20,
+    maxWidth: "90%",
     textTransform: "capitalize",
   },
   selectedList: {

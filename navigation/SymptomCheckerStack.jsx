@@ -18,7 +18,7 @@ const SymptomCheckerStack = () => {
           name="Selector"
           component={AgeSexSelectorScreen}
           options={{
-            headerTitle: "Profile",
+            headerTitle: "Select Profile",
             headerStyle: {
               backgroundColor: colors.color
             }
