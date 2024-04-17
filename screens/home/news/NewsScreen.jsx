@@ -16,8 +16,8 @@ const NewsScreen = () => {
     try {
       const response = await connect("news")
       const { filteredHealthArticles, filteredScienceArticles } = response.data
-      const featured = filteredHealthArticles.shift()
-      setFeaturedArticle(featured)
+      const featuredHealth = filteredHealthArticles.shift()
+      setFeaturedArticle(featuredHealth)
       setHealthArticles(filteredHealthArticles)
       setScienceArticles(filteredScienceArticles)
     } catch (error) {
@@ -32,14 +32,21 @@ const NewsScreen = () => {
   return (
     <ScrollView style={styles.container}>
       <FeaturedArticle
-        source={featuredArticle?.source.name}
-        title={featuredArticle?.title}
-        url={featuredArticle?.url}
-        urlToImage={featuredArticle?.urlToImage}
-        date={featuredArticle?.publishedAt}
+        source={healthArticles[0]?.source.name}
+        title={healthArticles[0]?.title}
+        url={healthArticles[0]?.url}
+        urlToImage={healthArticles[0]?.urlToImage}
+        date={healthArticles[0]?.publishedAt}
       />
-      <NewsPerCategory category="health" articles={healthArticles} />
-      <NewsPerCategory category="science" articles={scienceArticles} />
+      <NewsPerCategory category="health" articles={healthArticles.slice(1)} />
+      <FeaturedArticle
+        source={scienceArticles[0]?.source.name}
+        title={scienceArticles[0]?.title}
+        url={scienceArticles[0]?.url}
+        urlToImage={scienceArticles[0]?.urlToImage}
+        date={scienceArticles[0]?.publishedAt}
+      />
+      <NewsPerCategory category="science" articles={scienceArticles.slice(1)} />
     </ScrollView>
 
   )

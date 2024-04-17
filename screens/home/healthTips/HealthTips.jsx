@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
-    borderRadius: 10,
+    borderRadius: 6,
   },
   heading: {
     flexDirection: "row",
@@ -58,6 +58,10 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 16,
     fontWeight: "600"
+  },
+  text: {
+    fontSize: 16,
+    lineHeight: 22
   }
 })
 

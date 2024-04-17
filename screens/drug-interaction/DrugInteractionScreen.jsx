@@ -1,40 +1,50 @@
-import { useEffect, useState } from 'react'
 import { FlatList, Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
-import { medicalConditionListSorted } from '../../data/medicalConditions'
+import { useEffect, useState } from 'react'
+import ListSearch from '../../components/ListSearch'
+import { commonDrugList } from '../../data/commonDrugList'
 import { FontAwesome5, Ionicons } from '@expo/vector-icons'
-import { colors } from '../../utils/styles'
-import { useMedContext } from '../../context/med-context'
 import Button from '../../components/ui/Button'
 
-const SymptomLookupScreen = ({ navigation }) => {
+const DrugInteractionScreen = () => {
 
-  const { selectedSymptoms, toggleSymptomSelect, resetSymptoms, fetchTreatmentPlan } = useMedContext()
-
-
+  const [isLoading, setIsLoading] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
-  const [queryMatches, setQueryMatches] = useState([])
+  const [queryMatches, setQueryMatches] = useState(commonDrugList)
+  const [selectedItems, setSelectedItems] = useState([])
+
+  const handleSubmit = () => {
+
+  }
+
+  const handleSelectToggle = (item) => {
+    if (selectedItems. length >= 5 && selectedItems.includes(item)) {
+      console.log("5 meds max")
+    }
+    if (selectedItems.includes(item)) {
+      const updatedSelectedItems = [...selectedItems, item]
+      setSelectedItems(updatedSelectedItems)
+    } else {
+      const updatedSelectedItems = selectedItems.filter(selected => selected !== item)
+      setSelectedItems(updatedSelectedItems)
+    }
+  }
 
   useEffect(() => {
     if (searchQuery.length === 0) {
-      setQueryMatches(medicalConditionListSorted)
+      setQueryMatches(commonDrugList)
     }
     // delay after user starts typing before searching
     setTimeout(() => {
       // filter workouts based on user-entered query once user has entered 3 letters
       if (searchQuery.length > 2) {
-        const filteredConditions = medicalConditionListSorted.filter(condition => {
-          return condition.toLowerCase().includes(searchQuery.toLowerCase())
+        const filteredMatches = commonDrugList.filter(drug => {
+          return drug.toLowerCase().includes(searchQuery.toLowerCase())
         })
         // loadOptions enables immediate filtering on input change with callback function passing in filtered results
-        setQueryMatches(filteredConditions)
+        setQueryMatches(filteredMatches)
       }
     }, 100)
   }, [searchQuery])
-
-  const handleSubmit = () => {
-    fetchTreatmentPlan()
-    navigation.navigate("Results")
-  }
 
   return (
     <View style={styles.page}>
@@ -42,7 +52,6 @@ const SymptomLookupScreen = ({ navigation }) => {
 
         <View style={styles.searchSection}>
           <View style={styles.searchBar}>
-
             <TextInput
               value={searchQuery}
               onChangeText={(query) => setSearchQuery(query)}
@@ -51,45 +60,43 @@ const SymptomLookupScreen = ({ navigation }) => {
               dense={true}
               clearButtonMode='always'
               autoCapitalize="none"
-            >
-            </TextInput>
+            />
             <View style={styles.searchIcon}>
               <FontAwesome5 name="search" size={16} color="red" />
             </View>
+            { selectedItems.length >= 2 &&
+              <View>
+                <Button onPress={handleSubmit}><Text>Search</Text></Button>
+              </View>
+            }
           </View>
-
-          <View>
-            <Button onPress={handleSubmit}><Text>Search</Text></Button>
-          </View>
-
         </View>
 
-        <View style={styles.selectedSymptomList}>
-          {selectedSymptoms.map(item =>
-          <View style={styles.selectedSymptomItem} key={item}>
-            <Text style={styles.selectedSymptomText} numberOfLines={1}>{item}</Text>
-            <Pressable onPress={() => toggleSymptomSelect(item)}>
-              <Ionicons name="remove-circle-sharp" size={20} color="red" />
-            </Pressable>
-          </View>)}
+        <View style={styles.selectedList}>
+          {selectedItems.map(item =>
+            <View style={styles.selectedItem}>
+              <Text style={styles.selectedItemText} numberOfLines={1}>{item}</Text>
+              <Pressable onPress={() => handleSelectToggle(item)}>
+                <Ionicons name="remove-circle-sharp" size={20} color="red" />
+              </Pressable>
+            </View>)}
         </View>
 
         <FlatList
-          style={styles.symptomList}
+          style={styles.list}
           data={queryMatches}
           keyExtractor={item => item}
-          renderItem={({item}) =>
+          renderItem={({ item }) =>
             <Pressable
-              style={styles.symptomItem}
-              onPress={() => toggleSymptomSelect(item)}
+              style={styles.listItem}
+              onPress={() => handleSelectToggle(item)}
             >
-              <Text style={styles.symptomItemText} numberOfLines={1}>{item}</Text>
-              {selectedSymptoms.includes(item) &&
+              <Text style={styles.listItemText} numberOfLines={1}>{item}</Text>
+              {selectedItems?.includes(item) &&
                 <Ionicons name="checkmark" size={20} color="red" />}
             </Pressable>
           }
         />
-
       </View>
     </View>
   )
@@ -111,8 +118,7 @@ const styles = StyleSheet.create({
   },
   searchSection: {
     flexDirection: "row",
-    alignItems: "center",
-    justifyContent:"space-around",
+    gap: 8
   },
   searchBar: {
     backgroundColor: "white",
@@ -122,7 +128,7 @@ const styles = StyleSheet.create({
     paddingLeft: 28,
     paddingRight: 12,
     paddingVertical: 6,
-    width: 280,
+    width: "96%",
     justifyContent: "center",
     margin: 12,
     height: 42,
@@ -132,33 +138,29 @@ const styles = StyleSheet.create({
     paddingHorizontal: 6,
     alignSelf: "flex-start",
   },
-  selectedSymptomList: {
-    width: 300,
-  },
-  selectedSymptomItem: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  selectedSymptomText: {
-
-  },
-  symptomList: {
+  list: {
     width: "100%"
   },
-  symptomItem: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+  listItem: {
     paddingHorizontal: 8,
     paddingVertical: 8,
     borderBottomColor: "#E8E8E8",
-    borderBottomWidth: 1,
+    borderBottomWidth: 1
   },
-  symptomItemText: {
+  listItemText: {
     fontSize: 20,
-    maxWidth: "90%",
     textTransform: "capitalize",
+  },
+  selectedList: {
+    width: 300,
+  },
+  selectedItem: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  selectedItemText: {
+
   }
 })
-export default SymptomLookupScreen
+export default DrugInteractionScreen

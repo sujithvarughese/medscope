@@ -37,25 +37,11 @@ const DrugLookupScreen = ({ navigation }) => {
       sideEffects: drugInformationData.sideEffects
     })
   }
-/*
-  useEffect(() => {
-    // delay after user starts typing before searching
-    setTimeout(() => {
-      // filter workouts based on user-entered query once user has entered 3 letters
-      if (searchQuery.length > 2) {
-        const filteredDrugs = drugListData.filter(drug => drug.toLowerCase().includes(searchQuery.toLowerCase()))
-        // loadOptions enables immediate filtering on input change with callback function passing in filtered results
-        setQueryMatches(filteredDrugs)
-      }
-    }, 100)
-  }, [searchQuery])
-*/
 
   const fetchAutocompleteResults = async () => {
     try {
       const response = await connect(`drug?query=${searchQuery}`)
       const { results } = response.data
-      console.log(results)
       // loadOptions enables immediate filtering on input change with callback function passing in filtered results
       setQueryMatches(results)
     } catch (error) {

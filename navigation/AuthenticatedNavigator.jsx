@@ -7,11 +7,10 @@ import { FontAwesome6 } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { useAuthContext } from '../context/auth-context'
 import IconButton from '../components/ui/IconButton'
-import DrugLookupScreen from '../screens/drug-research/DrugLookupScreen'
+import DrugInteractionScreen from '../screens/drug-interaction/DrugInteractionScreen'
 import SymptomCheckerStack from './SymptomCheckerStack'
 import DrugResearchStack from './DrugResearchStack'
 import { colors } from '../utils/styles'
-import NewsScreen from '../screens/home/news/NewsScreen'
 
 
 
@@ -36,32 +35,30 @@ const AuthenticatedNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="News"
-        component={NewsScreen}
-        options={{
-          tabBarLabel: "News",
-          tabBarIcon: () => <Ionicons name="newspaper-sharp" size={24} color="black" />,
-
-        }}
-      />
-      <Tab.Screen
         name="drugs"
         component={DrugResearchStack}
         options={{
           tabBarLabel: "Drugs",
           tabBarIcon: () => <FontAwesome6 name="prescription-bottle-medical" size={24} color="black" />,
           headerShown: false,
-
         }}
       />
-
       <Tab.Screen
         name="treatment"
         component={SymptomCheckerStack}
         options={{
-          tabBarLabel: "Symptom Checker",
+          tabBarLabel: "Symptoms",
           tabBarIcon: () => <Fontisto name="doctor" size={24} color="black" />,
           headerShown: false
+        }}
+      />
+      <Tab.Screen
+        name="drug-interactions"
+        component={DrugInteractionScreen}
+        options={{
+          tabBarLabel: "Interactions",
+          tabBarIcon: () => <FontAwesome5 name="hand-holding-medical" size={24} color="black" />,
+          headerShown: false,
         }}
       />
     </Tab.Navigator>

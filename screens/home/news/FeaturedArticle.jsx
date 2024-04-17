@@ -2,7 +2,7 @@ import React from 'react'
 import { Image, ImageBackground, StyleSheet, Text, View } from 'react-native'
 import { colors } from '../../../utils/styles'
 
-const FeaturedArticle = ({ source, title, url, urlToImage, date }) => {
+const FeaturedArticle = ({ category, source, title, url, urlToImage, date }) => {
 
   return (
     <View style={styles.container}>
@@ -31,7 +31,7 @@ const FeaturedArticle = ({ source, title, url, urlToImage, date }) => {
 
 const styles = StyleSheet.create({
   container: {
-
+    marginVertical: 6,
   },
   image: {
     width: "100%",
