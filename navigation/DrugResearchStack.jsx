@@ -1,8 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import DrugLookupScreen from "../screens/drug-research/DrugLookupScreen"
 import DrugDetailsTabNavigator from './DrugDetailsTabNavigator'
-import { colors } from '../utils/styles'
-
 
 
 const Stack = createNativeStackNavigator()

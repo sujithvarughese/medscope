@@ -5,12 +5,11 @@ import connect from '../../utils/connect'
 import { FontAwesome5, FontAwesome6 } from '@expo/vector-icons'
 import { commonDrugList } from '../../data/commonDrugList'
 import LoadingOverlay from '../../components/ui/LoadingOverlay'
+import ListSearch from '../../components/ListSearch'
 
 const DrugLookupScreen = ({ navigation }) => {
 
   const [isLoading, setIsLoading] = useState(false)
-  const [searchQuery, setSearchQuery] = useState("")
-  const [queryMatches, setQueryMatches] = useState(commonDrugList)
 
   const fetchDrugInformation = async (drug) => {
     try {
@@ -24,9 +23,7 @@ const DrugLookupScreen = ({ navigation }) => {
       setIsLoading(false)
     }
   }
-
   const handleSubmit = async (selectedDrug) => {
-    setSearchQuery("")
     const { drugInformationData } = await fetchDrugInformation(selectedDrug)
     navigation.navigate("DrugDetails", {
       name: drugInformationData.name,
@@ -37,30 +34,15 @@ const DrugLookupScreen = ({ navigation }) => {
       sideEffects: drugInformationData.sideEffects
     })
   }
-
-  const fetchAutocompleteResults = async () => {
+  const fetchAutocompleteResults = async (searchQuery) => {
     try {
       const response = await connect(`drug?query=${searchQuery}`)
       const { results } = response.data
-      // loadOptions enables immediate filtering on input change with callback function passing in filtered results
-      setQueryMatches(results)
+      return results
     } catch (error) {
       throw new Error(error)
     }
   }
-  useEffect(() => {
-    // delay after user starts typing before searching
-    if (searchQuery.length === 0) {
-      setQueryMatches(commonDrugList)
-      return
-    }
-    setTimeout(() => {
-      // filter workouts based on user-entered query once user has entered 3 letters
-      if (searchQuery.length > 2) {
-        fetchAutocompleteResults()
-      }
-    }, 100)
-  }, [searchQuery])
 
   if (isLoading) {
     return <LoadingOverlay />
@@ -70,38 +52,7 @@ const DrugLookupScreen = ({ navigation }) => {
     <View style={styles.page}>
       <View style={styles.container}>
 
-        <View style={styles.searchSection}>
-          <View style={styles.searchBar}>
-            <TextInput
-                value={searchQuery}
-                onChangeText={(query) => setSearchQuery(query)}
-                onSubmitEditing={(value) => handleSubmit(value)}
-                returnKeyType="search"
-                placeholder="Search e.g. Tylenol"
-                dense={true}
-                clearButtonMode='always'
-                autoCapitalize="none"
-            >
-            </TextInput>
-            <View style={styles.searchIcon}>
-              <FontAwesome5 name="search" size={16} color="red" />
-            </View>
-          </View>
-        </View>
-
-        <FlatList
-          style={styles.drugList}
-          data={queryMatches}
-          keyExtractor={item => item}
-          renderItem={({item}) =>
-            <Pressable
-              style={styles.drugItem}
-              onPress={()=>handleSubmit(item)}
-          >
-            <Text style={styles.drugItemText} numberOfLines={1}>{item}</Text>
-            </Pressable>
-          }
-        />
+      <ListSearch onChange={fetchAutocompleteResults} onClick={handleSubmit} />
 
       </View>
 

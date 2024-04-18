@@ -5,31 +5,11 @@ import { FontAwesome5, Ionicons } from '@expo/vector-icons'
 import { colors } from '../../utils/styles'
 import { useMedContext } from '../../context/med-context'
 import Button from '../../components/ui/Button'
+import ListSearch from '../../components/ListSearch'
 
 const SymptomLookupScreen = ({ navigation }) => {
 
-  const { selectedSymptoms, toggleSymptomSelect, resetSymptoms, fetchTreatmentPlan } = useMedContext()
-
-
-  const [searchQuery, setSearchQuery] = useState("")
-  const [queryMatches, setQueryMatches] = useState([])
-
-  useEffect(() => {
-    if (searchQuery.length === 0) {
-      setQueryMatches(medicalConditionListSorted)
-    }
-    // delay after user starts typing before searching
-    setTimeout(() => {
-      // filter workouts based on user-entered query once user has entered 3 letters
-      if (searchQuery.length > 2) {
-        const filteredConditions = medicalConditionListSorted.filter(condition => {
-          return condition.toLowerCase().includes(searchQuery.toLowerCase())
-        })
-        // loadOptions enables immediate filtering on input change with callback function passing in filtered results
-        setQueryMatches(filteredConditions)
-      }
-    }, 100)
-  }, [searchQuery])
+  const { fetchTreatmentPlan } = useMedContext()
 
   const handleSubmit = () => {
     fetchTreatmentPlan()
@@ -39,57 +19,7 @@ const SymptomLookupScreen = ({ navigation }) => {
   return (
     <View style={styles.page}>
       <View style={styles.container}>
-
-        <View style={styles.searchSection}>
-          <View style={styles.searchBar}>
-
-            <TextInput
-              value={searchQuery}
-              onChangeText={(query) => setSearchQuery(query)}
-              returnKeyType="search"
-              placeholder="Search e.g. heartburn"
-              dense={true}
-              clearButtonMode='always'
-              autoCapitalize="none"
-            >
-            </TextInput>
-            <View style={styles.searchIcon}>
-              <FontAwesome5 name="search" size={16} color="red" />
-            </View>
-          </View>
-
-          <View>
-            <Button onPress={handleSubmit}><Text>Search</Text></Button>
-          </View>
-
-        </View>
-
-        <View style={styles.selectedSymptomList}>
-          {selectedSymptoms.map(item =>
-          <View style={styles.selectedSymptomItem} key={item}>
-            <Text style={styles.selectedSymptomText} numberOfLines={1}>{item}</Text>
-            <Pressable onPress={() => toggleSymptomSelect(item)}>
-              <Ionicons name="remove-circle-sharp" size={20} color="red" />
-            </Pressable>
-          </View>)}
-        </View>
-
-        <FlatList
-          style={styles.symptomList}
-          data={queryMatches}
-          keyExtractor={item => item}
-          renderItem={({item}) =>
-            <Pressable
-              style={styles.symptomItem}
-              onPress={() => toggleSymptomSelect(item)}
-            >
-              <Text style={styles.symptomItemText} numberOfLines={1}>{item}</Text>
-              {selectedSymptoms.includes(item) &&
-                <Ionicons name="checkmark" size={20} color="red" />}
-            </Pressable>
-          }
-        />
-
+        <ListSearch list={medicalConditionListSorted} buttonText="Search" onSubmit={handleSubmit} />
       </View>
     </View>
   )
@@ -132,21 +62,36 @@ const styles = StyleSheet.create({
     paddingHorizontal: 6,
     alignSelf: "flex-start",
   },
-  selectedSymptomList: {
+  selectedListContainer: {
     width: 300,
+    backgroundColor: colors.colorGray,
+    padding: 20,
+    borderRadius: 6,
+    alignItems: "center",
+    gap: 12
   },
-  selectedSymptomItem: {
+  selectedList: {
+    width: "100%",
+    gap: 6,
+  },
+  selectedItem: {
+    backgroundColor: colors.colorLight,
+    padding: 4,
+    borderRadius: 6,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    paddingVertical: 8,
+    borderBottomColor: "#E8E8E8",
+    borderBottomWidth: 1,
   },
-  selectedSymptomText: {
+  selectedItemText: {
 
   },
-  symptomList: {
+  list: {
     width: "100%"
   },
-  symptomItem: {
+  listItem: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
@@ -155,7 +100,7 @@ const styles = StyleSheet.create({
     borderBottomColor: "#E8E8E8",
     borderBottomWidth: 1,
   },
-  symptomItemText: {
+  listItemText: {
     fontSize: 20,
     maxWidth: "90%",
     textTransform: "capitalize",

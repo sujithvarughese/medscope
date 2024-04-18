@@ -4,6 +4,7 @@ import { AuthProvider, useAuthContext } from './context/auth-context'
 import PublicNavigator from './navigation/PublicNavigator'
 import { useEffect, useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 
 const Navigation = () => {
@@ -23,9 +24,11 @@ const Navigation = () => {
   }, [])
 
   return (
-    <NavigationContainer>
-      {isAuthenticated ? <AuthenticatedNavigator /> : <PublicNavigator />}
-    </NavigationContainer>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <NavigationContainer>
+        {isAuthenticated ? <AuthenticatedNavigator /> : <PublicNavigator />}
+      </NavigationContainer>
+    </GestureHandlerRootView>
   )
 
 }

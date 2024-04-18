@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { useMedContext } from '../../context/med-context'
 import TreatmentItem from './TreatmentItem'
@@ -7,7 +7,11 @@ import LoadingOverlay from '../../components/ui/LoadingOverlay'
 const SymptomResultsScreen = () => {
 
   const { treatmentPlan } = useMedContext()
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    setIsLoading(false)
+  }, [])
 
   if (isLoading) {
     return <LoadingOverlay />
@@ -52,6 +56,8 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     borderRadius: 10,
     paddingVertical: 12,
+    width: 300,
+    height: "80%",
   },
   heading: {
     fontSize: 20,
@@ -59,7 +65,7 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   treatment: {
-    flex: 1,
+
     gap: 24,
   }
 })
