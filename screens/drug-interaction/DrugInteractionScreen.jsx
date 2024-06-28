@@ -22,7 +22,7 @@ const DrugInteractionScreen = () => {
   return (
     <View style={styles.page}>
       <View style={styles.container}>
-        <ListSearch buttonText="submit" placeholder="Search Drug: e.g.acetomenophen" onChange={fetchAutocompleteResults} onSubmit={handleSubmit} />
+        <ListSearch buttonText="submit" placeholder="Search drug e.g.acetomenophen" onChange={fetchAutocompleteResults} onSubmit={handleSubmit} />
       </View>
     </View>
   )

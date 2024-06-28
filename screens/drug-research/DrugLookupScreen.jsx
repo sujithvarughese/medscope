@@ -52,7 +52,7 @@ const DrugLookupScreen = ({ navigation }) => {
     <View style={styles.page}>
       <View style={styles.container}>
 
-      <ListSearch onChange={fetchAutocompleteResults} onClick={handleSubmit} />
+      <ListSearch onChange={fetchAutocompleteResults} onClick={handleSubmit} placeholder="Search drug e.g.acetomenophen"/>
 
       </View>
 

@@ -184,7 +184,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   selectedItemText: {
-
+    maxWidth: "90%"
   },
   list: {
     width: "100%"

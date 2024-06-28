@@ -10,7 +10,7 @@ PODS:
   - EXJSONUtils (0.12.3)
   - EXManifests (0.13.2):
     - ExpoModulesCore
-  - Expo (50.0.17):
+  - Expo (50.0.19):
     - ExpoModulesCore
   - ExpoFileSystem (16.0.9):
     - ExpoModulesCore
@@ -24,7 +24,7 @@ PODS:
     - React-RCTAppDelegate
     - ReactCommon/turbomodule/core
   - EXStructuredHeaders (3.7.2)
-  - EXUpdates (0.24.12):
+  - EXUpdates (0.24.13):
     - EASClient
     - EXManifests
     - ExpoModulesCore
@@ -926,9 +926,9 @@ PODS:
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
-  - react-native-config (1.5.1):
-    - react-native-config/App (= 1.5.1)
-  - react-native-config/App (1.5.1):
+  - react-native-config (1.5.2):
+    - react-native-config/App (= 1.5.2)
+  - react-native-config/App (1.5.2):
     - React-Core
   - react-native-pager-view (6.2.3):
     - glog
@@ -1367,12 +1367,12 @@ SPEC CHECKSUMS:
   EXFont: f20669cb266ef48b004f1eb1f2b20db96cd1df9f
   EXJSONUtils: 5c42959e87be238b045ef37cc5268b16a6c0ad4a
   EXManifests: 5e8c29f36c716af768a4ea47ec05e1b89ab93091
-  Expo: 2cdb5916749a1509cf88114f1f510bd458630eb4
+  Expo: ad8bce0c0fc557cae703cc8dbce73d61a90ab5c5
   ExpoFileSystem: 74cc0fae916f9f044248433971dcfc8c3befd057
   ExpoKeepAwake: 0f5cad99603a3268e50af9a6eb8b76d0d9ac956c
   ExpoModulesCore: 4a8928a228569301ac4fc4a1e846713e05754d05
   EXStructuredHeaders: 5b0f47259db047dc1fdfa84752e292c2bfa68ecd
-  EXUpdates: 17e26679a93e626b0ae3ebbff966cd7021413a0a
+  EXUpdates: 4aa99ef9610e0d6fbf80d7f2b3f169b527f24a1d
   EXUpdatesInterface: 3e444e2093e25b7ca0999a7d8c16e8392dee70c3
   FBLazyVector: f64d1e2ea739b4d8f7e4740cde18089cd97fe864
   FBReactNativeSpec: 9f2b8b243131565335437dba74923a8d3015e780
@@ -1403,7 +1403,7 @@ SPEC CHECKSUMS:
   React-logger: 3eb80a977f0d9669468ef641a5e1fabbc50a09ec
   React-Mapbuffer: 84ea43c6c6232049135b1550b8c60b2faac19fab
   react-native-blur: 799045500f56146afc46245148080e7b7623cb75
-  react-native-config: 86038147314e2e6d10ea9972022aa171e6b1d4d8
+  react-native-config: d7d8a0c65f7fa523197879f6b777997abbfc987e
   react-native-pager-view: d5f3adb58a4e6e0d200055e9a4afdcda9b9022ce
   react-native-safe-area-context: 0ee144a6170530ccc37a0fd9388e28d06f516a89
   react-native-slider: 33b8d190b59d4f67a541061bb91775d53d617d9d

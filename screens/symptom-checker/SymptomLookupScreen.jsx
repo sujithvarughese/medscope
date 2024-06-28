@@ -19,7 +19,7 @@ const SymptomLookupScreen = ({ navigation }) => {
   return (
     <View style={styles.page}>
       <View style={styles.container}>
-        <ListSearch list={medicalConditionListSorted} buttonText="Search" onSubmit={handleSubmit} />
+        <ListSearch list={medicalConditionListSorted} buttonText="Search" placeholder="Search symptom e.g. headache" onSubmit={handleSubmit} />
       </View>
     </View>
   )
