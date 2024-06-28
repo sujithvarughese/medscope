@@ -3,10 +3,7 @@
     "development": {
       "channel": "development",
       "developmentClient": true,
-      "distribution": "internal",
-      "env": {
-        "NODE_ENV": "development"
-      }
+      "distribution": "internal"
     },
     "preview": {
       "channel": "preview",
@@ -16,16 +13,10 @@
       },
       "android": {
         "buildType": "apk"
-      },
-      "env": {
-        "NODE_ENV": "production"
       }
     },
     "production": {
-      "channel": "production",
-      "env": {
-        "NODE_ENV": "production"
-      }
+      "channel": "production"
     }
   }
 }
