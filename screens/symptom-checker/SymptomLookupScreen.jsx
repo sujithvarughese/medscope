@@ -6,20 +6,34 @@ import { colors } from '../../utils/styles'
 import { useMedContext } from '../../context/med-context'
 import Button from '../../components/ui/Button'
 import ListSearch from '../../components/ListSearch'
+import useAxios from '../../hooks/useAxios'
+import LoadingOverlay from '../../components/ui/LoadingOverlay'
 
 const SymptomLookupScreen = ({ navigation }) => {
 
+  const [isLoading, setIsLoading] = useState()
   const { fetchTreatmentPlan } = useMedContext()
+
+
 
   const handleSubmit = () => {
     fetchTreatmentPlan()
     navigation.navigate("Results")
   }
 
+  if (isLoading) {
+    return <LoadingOverlay />
+  }
+
   return (
     <View style={styles.page}>
       <View style={styles.container}>
-        <ListSearch list={medicalConditionListSorted} buttonText="Search" placeholder="Search symptom e.g. headache" onSubmit={handleSubmit} />
+        <ListSearch
+          list={medicalConditionListSorted}
+          buttonText="Search"
+          placeholder="Search symptom e.g. headache"
+          onSubmit={handleSubmit}
+        />
       </View>
     </View>
   )

@@ -3,6 +3,7 @@ import { config } from './constants'
 
 const connect = axios.create({
   baseURL: config.url.API_URL,
+  withCredentials: true
 });
 
 connect.interceptors.response.use(

@@ -43,8 +43,9 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   container: {
-    gap: 24,
+    gap: 42,
     alignItems: "center",
+    justifyContent: "center",
     backgroundColor: "#FFFFFF",
     elevation: 8,
     shadowColor: "#000",
@@ -56,8 +57,8 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     borderRadius: 10,
     paddingVertical: 12,
-    width: 300,
-    height: "80%",
+    width: 350,
+    height: "90%",
   },
   heading: {
     fontSize: 20,
@@ -65,7 +66,6 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   treatment: {
-
     gap: 24,
   }
 })

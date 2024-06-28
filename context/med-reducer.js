@@ -18,6 +18,9 @@ const medReducer = (state, action) => {
   if (action.type === "SET_TREATMENT_PLAN") {
     return { ...state, treatmentPlan: action.payload.treatmentPlan }
   }
+  if (action.type === "SET_DRUG_INTERACTIONS") {
+    return { ...state, drugInteractions: action.payload.drugInteractions }
+  }
 }
 
 export default medReducer

@@ -10,6 +10,7 @@ const initialState = {
   sex: false,
   selectedSymptoms: [],
   treatmentPlan: [],
+  drugInteractions: ""
 }
 
 const MedContextProvider = ({ children }) => {
@@ -29,6 +30,12 @@ const MedContextProvider = ({ children }) => {
     } else {
       dispatch({ type: "REMOVE_SYMPTOM", payload: { symptom }})
     }
+  }
+
+
+
+  const setTreatmentPlan = (treatmentPlan) => {
+    dispatch({ type: "SET_TREATMENT_PLAN", payload: { treatmentPlan } })
   }
 
   const resetSymptoms = () => {
@@ -51,8 +58,18 @@ const MedContextProvider = ({ children }) => {
     } catch (error) {
       throw new Error(error)
     }
-
   }
+
+  const fetchDrugInteractions = async (drugs) => {
+    try {
+      const response = await connect.post("interactions", { drugs: drugs })
+      const { drugInteractions } = response.data
+      dispatch({ type: "SET_DRUG_INTERACTIONS", payload: { drugInteractions }})
+    } catch (error) {
+      throw new Error(error)
+    }
+  }
+
   return (
     <MedContext.Provider value={
     {
@@ -62,7 +79,9 @@ const MedContextProvider = ({ children }) => {
       toggleSymptomSelect,
       resetSymptoms,
       fetchTreatmentPlan,
-      fetchDrugInformation
+      fetchDrugInformation,
+      fetchDrugInteractions,
+      setTreatmentPlan
     }
   }>
     {children}

@@ -6,6 +6,7 @@ import { FontAwesome5, FontAwesome6 } from '@expo/vector-icons'
 import { commonDrugList } from '../../data/commonDrugList'
 import LoadingOverlay from '../../components/ui/LoadingOverlay'
 import ListSearch from '../../components/ListSearch'
+import { useMedContext } from '../../context/med-context'
 
 const DrugLookupScreen = ({ navigation }) => {
 
@@ -52,7 +53,11 @@ const DrugLookupScreen = ({ navigation }) => {
     <View style={styles.page}>
       <View style={styles.container}>
 
-      <ListSearch onChange={fetchAutocompleteResults} onClick={handleSubmit} placeholder="Search drug e.g.acetomenophen"/>
+      <ListSearch
+        onChange={fetchAutocompleteResults}
+        onClick={handleSubmit}
+        placeholder="Search drug e.g.acetomenophen"
+      />
 
       </View>
 
