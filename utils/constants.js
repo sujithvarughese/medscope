@@ -1,7 +1,7 @@
 
 const prod = {
   url: {
-    API_URL: "https://exuberant-pear-stockings.cyclic.app/api/v1"
+    API_URL: "https://medscope-api-53918682935c.herokuapp.com/api/v1"
   }
 };
 
